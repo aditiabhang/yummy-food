@@ -21,8 +21,8 @@ A plain HTML/CSS recipe site published with GitHub Pages.
 ## Design
 
 - `DESIGN.md` at the root is the visual world: palette, type, spacing, shape, components. It wins over
-  any skill's palette or type guidance. It names proprietary fonts; use the substitutions listed in
-  its "About this file" section.
+  any skill's palette or type guidance. Fonts are Literata (OFL, self-hosted in `assets/fonts/`,
+  Charter/Georgia fallback) and the system sans stack. Never add a font CDN link.
 - Skills in `.agents/skills/`:
   - `design-taste-frontend`: how to find the page's idea, plan the sections, write the copy, choose
     and credit imagery, apply the no-ornament house rules, and critique screenshots. Load it when
@@ -32,7 +32,7 @@ A plain HTML/CSS recipe site published with GitHub Pages.
 - Verify visual changes by opening the page in the browser at phone and desktop widths and looking at
   screenshots, not by reading the source alone.
 
-## Layout (proposed; nothing is built yet)
+## Layout
 
-- `index.html`, one HTML file per recipe, shared `styles.css` and, if needed, one small `script.js`.
+- `index.html`, one HTML file per recipe, shared `css/style.css` and, if needed, one small `js/site.js`.
 - `assets/` for images, fonts and `credits.json` for found pictures (title, creator, licence, source).

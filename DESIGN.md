@@ -1,633 +1,246 @@
 ---
-version: alpha
-name: Oura Analysis
-description: An analysis of Oura's design language — a warm-paper wellness system that pairs a high-contrast Editorial serif with a quiet grotesque sans, wraps every surface in a cream-and-earth palette drawn from mustard, clay and olive, and drives conversion with a single decisive action blue against otherwise calm, photography-led layouts.
+version: 1
+name: Yummy Food — Sunset lamp
+description: An original design for a family recipe site. A dark plum-brown kitchen lit by one sunset lamp — a single orange-to-pink glow band behind the hero and the recipe card — with warm off-white serif text, amber buttons, and a recipe card that is the same object on screen, under the Jump button, and on paper. Built for one-handed phone use by a parent cooking with a toddler underfoot.
 
 colors:
-  primary: "#2a72de"
-  on-primary: "#ffffff"
-  stone: "#4a4741"
-  on-stone: "#ffffff"
-  clay: "#6b443d"
-  espresso: "#39221e"
-  gold: "#af751b"
-  ochre: "#bc924c"
-  gold-soft: "#ddaa61"
-  gold-pale: "#ddbe78"
-  gold-deep: "#684d07"
-  forest: "#224228"
-  olive: "#5c6f5d"
-  sage: "#849671"
-  sage-mute: "#7b886d"
-  sage-pale: "#ced4b8"
-  canvas: "#f7f1e8"
-  surface: "#ffffff"
-  surface-grey: "#ececec"
-  silver: "#cccac7"
-  ink-band: "#000000"
-  ink-band-soft: "#19191c"
-  ink: "#1c1b1a"
-  ash: "#838280"
-  mute: "#a8a5a0"
-  on-dark: "#ffffff"
-  hairline: "#e1dcd3"
-  error: "#e33a22"
+  ground: "#241A1C"          # page background, dark plum-brown
+  surface: "#33262A"         # cards, recipe card, nav
+  surface-raised: "#3F3034"  # tags, inputs, stepper
+  ink: "#F5E9E2"             # body text (14.2:1 on ground)
+  muted: "#CDB8B2"           # meta, captions (9.0:1 on ground)
+  faint: "#8F7A7E"           # disabled text, input borders (4.2:1)
+  hairline: "#4A3A3F"        # dividers only, not control borders
+  glow-start: "#F2A65A"      # lamp gradient, amber end
+  glow-end: "#D95C7C"        # lamp gradient, pink end — decoration only, never text
+  accent: "#F08A4B"          # primary button fill, active step numeral
+  on-accent: "#241A1C"       # text on accent (6.8:1)
+  link: "#F2A65A"            # links on ground (8.4:1) and surface (7.1:1)
+  success: "#9FD3A8"         # "copied", "added" (10.0:1)
+  error: "#FF9A8A"           # form errors (8.3:1)
+  print-ink: "#1A1214"       # print stylesheet only
+  print-ground: "#FFFFFF"
 
 typography:
-  display:
-    fontFamily: Editorial New
-    fontSize: 110px
-    fontWeight: 300
-    lineHeight: 1.05
-    letterSpacing: 0
-  display-2:
-    fontFamily: Editorial New
-    fontSize: 80px
-    fontWeight: 300
+  display:          # recipe title in hero
+    fontFamily: Literata
+    fontSize: clamp(2.125rem, 1rem + 4.6vw, 4.5rem)  # 34–72px
+    fontWeight: 500
+    lineHeight: 1.0
+    letterSpacing: -0.02em
+  heading:          # section headings, card title
+    fontFamily: Literata
+    fontSize: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem)  # 28–40px
+    fontWeight: 500
     lineHeight: 1.1
-    letterSpacing: 0
-  heading-1:
-    fontFamily: Editorial New
-    fontSize: 68px
-    fontWeight: 300
-    lineHeight: 1.1
-    letterSpacing: 0
-  heading-2:
-    fontFamily: Editorial New
-    fontSize: 40px
-    fontWeight: 300
-    lineHeight: 1.15
-    letterSpacing: 0
-  heading-3:
-    fontFamily: AkkuratLL
-    fontSize: 40px
+    letterSpacing: -0.01em
+  lead:             # intro line under the title
+    fontFamily: Literata
+    fontSize: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem)  # 20–24px
     fontWeight: 400
-    lineHeight: 1.25
-    letterSpacing: 0
-  title:
-    fontFamily: AkkuratLL
-    fontSize: 32px
-    fontWeight: 400
-    lineHeight: 1.25
-    letterSpacing: 0
-  lead:
-    fontFamily: Editorial New
-    fontSize: 24px
-    fontWeight: 100
-    lineHeight: 1.25
-    letterSpacing: 0
-  body-lg:
-    fontFamily: AkkuratLL
-    fontSize: 20px
-    fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.35
     letterSpacing: 0
   body:
-    fontFamily: AkkuratLL
-    fontSize: 18px
+    fontFamily: Literata
+    fontSize: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)  # 17–19px
     fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: 0
-  body-sm:
-    fontFamily: AkkuratLL
-    fontSize: 16px
-    fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: 0
-  button:
-    fontFamily: AkkuratLL
-    fontSize: 16px
+    lineHeight: 1.55
+    letterSpacing: 0.005em
+  label:            # tags, meta, "Jump to recipe", ingredient amounts
+    fontFamily: system-ui
+    fontSize: 0.875rem    # 14px, never below 13px
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: 0.06em
+    textTransform: uppercase
+  numeral:          # step numbers, timers, servings
+    fontFamily: system-ui
+    fontSize: inherit
     fontWeight: 600
-    lineHeight: 1
-    letterSpacing: 0
-  ui:
-    fontFamily: AkkuratLL
-    fontSize: 14px
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: 0
-  caption:
-    fontFamily: AkkuratLL
-    fontSize: 13px
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: 0
-  eyebrow:
-    fontFamily: AkkuratLL
-    fontSize: 12px
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: 1px
-
-rounded:
-  none: 0px
-  xs: 4px
-  sm: 8px
-  md: 12px
-  lg: 24px
-  xl: 40px
-  full: 9999px
-
-spacing:
-  xxs: 4px
-  xs: 8px
-  sm: 12px
-  md: 16px
-  lg: 24px
-  xl: 32px
-
-components:
-  # ─── Brand-native components (extracted) ───
-  nav-bar:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.stone}"
-    typography: "{typography.ui}"
-    rounded: "{rounded.none}"
-
-  announcement-bar:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.eyebrow}"
-    rounded: "{rounded.none}"
-
-  hero:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.display}"
-    rounded: "{rounded.none}"
-
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-primary}"
-    typography: "{typography.button}"
-    rounded: "{rounded.full}"
-
-  button-secondary:
-    backgroundColor: "{colors.stone}"
-    textColor: "{colors.on-stone}"
-    typography: "{typography.button}"
-    rounded: "{rounded.full}"
-
-  button-on-dark:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.stone}"
-    typography: "{typography.button}"
-    rounded: "{rounded.full}"
-
-  button-outline:
-    backgroundColor: "{colors.ink-band}"
-    textColor: "{colors.on-dark}"
-    borderColor: "{colors.on-dark}"
-    typography: "{typography.button}"
-    rounded: "{rounded.full}"
-
-  button-outline-stone:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.stone}"
-    borderColor: "{colors.stone}"
-    typography: "{typography.button}"
-    rounded: "{rounded.full}"
-
-  button-icon-circular:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.stone}"
-    borderColor: "{colors.hairline}"
-    rounded: "{rounded.full}"
-
-  text-input:
-    backgroundColor: "{colors.stone}"
-    textColor: "{colors.on-stone}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.md}"
-
-  text-input-focused:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    borderColor: "{colors.error}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.md}"
-
-  feature-card:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    borderColor: "{colors.hairline}"
-    typography: "{typography.body}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-
-  feature-card-elevated:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-
-  product-card:
-    backgroundColor: "{colors.surface-grey}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.xl}"
-
-  person-card:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.lg}"
-
-  stat-badge:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.stone}"
-    typography: "{typography.title}"
-    rounded: "{rounded.full}"
-
-  pill-tab:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.stone}"
-    borderColor: "{colors.silver}"
-    typography: "{typography.ui}"
-    rounded: "{rounded.full}"
-
-  eyebrow-label:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.eyebrow}"
-    rounded: "{rounded.none}"
-
-  news-card:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-
-  footer:
-    backgroundColor: "{colors.ink-band-soft}"
-    textColor: "{colors.on-dark}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.none}"
-
-  # ─── Examples (illustrative, kit-mirror) ───
-  # (derived in Step 7.5 by scripts/derive-examples-block.mjs)
-
-  ex-pricing-tier:
-    description: "Default Pricing tier card. Re-uses feature-card chrome with brand canvas-soft surface."
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    borderColor: "{colors.hairline}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-  ex-pricing-tier-featured:
-    description: "Featured/highlighted tier — polarity-flipped surface (dark fill + light text in light mode, light fill + dark text in dark mode)."
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.on-primary}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-  ex-product-selector:
-    description: "Color/size picker chrome — fashion / DTC variant selector."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.md}"
-  ex-cart-drawer:
-    description: "Shopping cart drawer — DTC / fashion brand actual cart chrome."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-    item-divider: "{colors.hairline}"
-  ex-app-shell-row:
-    description: "Sidebar nav row inside the App Shell example. Active state uses brand primary as the indicator."
-    backgroundColor: "{colors.canvas}"
-    activeIndicator: "{colors.primary}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.sm} {spacing.md}"
-  ex-data-table-cell:
-    description: "Default data-table th + td chrome. Header uses mono-caps eyebrow typography; body uses body-sm."
-    headerBackground: "{colors.surface}"
-    headerTypography: "{typography.eyebrow}"
-    bodyTypography: "{typography.body-sm}"
-    cellPadding: "{spacing.sm} {spacing.md}"
-    rowBorder: "{colors.hairline}"
-  ex-auth-form-card:
-    description: "Sign-in / sign-up card. Re-uses feature-card chrome with text-input primitives inside."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-  ex-modal-card:
-    description: "Modal dialog surface — same chrome as feature-card with elevated shadow."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-  ex-empty-state-card:
-    description: "Empty-state illustration frame."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.xl}"
-    captionTypography: "{typography.body}"
-  ex-toast:
-    description: "Toast notification surface — feature-card shape + medium shadow."
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.sm} {spacing.md}"
-    typography: "{typography.body-sm}"
-
+    fontVariantNumeric: tabular-nums
 ---
-
-
-## About this file
-
-Copied from [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
-(`design-md/oura/DESIGN.md`, MIT licence, © 2026 VoltAgent) as the visual world for yummy-food, a
-plain HTML/CSS recipe site. It is an inspired interpretation of Oura's design language, not Oura's
-own assets. The tokens below are the source of truth for colour, type, spacing, shape and components.
-
-**Font substitution.** The named faces are proprietary and must not be used. Map them as follows:
-
-- `Editorial New` (display serif, weight 300) → **Fraunces** (Google Fonts, light optical sizes) or
-  **Instrument Serif**; fallback `Georgia, 'Times New Roman', serif`.
-- `AkkuratLL` (body grotesque) → **Inter** or the system stack
-  `system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`.
-
-Self-host the font files under `assets/fonts/` with `@font-face` (no third-party font requests, no
-build step). The system stack is an acceptable fallback for body text.
 
 ## Overview
 
-Oura's web presence reads like a printed field journal that learned to breathe. The default surface is a warm paper cream (`{colors.canvas}` — #f7f1e8) rather than white, and everything sits on it with generous air: a light, high-contrast serif for the big statements, a calm grotesque sans for everything you actually read, and full-bleed lifestyle photography that carries most of the emotional weight. Where a typical wellness-tech site would reach for gradients and glassmorphism, Oura reaches for restraint — flat fills, hairline rules, and long vertical silences between sections.
+Evening kitchen, sunset lamp on, dinner on the hob, phone propped against the fruit bowl. The page is dark and warm; the only bright thing is the lamp's glow on the wall. Everything the cook needs — time, servings, Jump to recipe — is reachable with a thumb.
 
-The system runs three surface "worlds." The **cream world** (`{colors.canvas}`) is home base for marketing and editorial content. The **ink world** (`{colors.ink-band}` / `{colors.ink-band-soft}`) is a near-black stage reserved for the footer and the "In the News" band, where cream cards float like clippings on a dark table. The **silver world** (`{colors.surface-grey}` → `{colors.silver}`) is a cool, machined grey gradient used only on the product-showcase pages, where the ring is photographed like jewellery.
+The idea: **the family recipe card is the page.** The homepage is a box of cards, the Jump button lands on the card, and the print stylesheet prints the card and nothing else.
 
-Color discipline is the signature move. The whole palette is earth-toned — mustard and gold (`{colors.gold}`, `{colors.ochre}`), clay and espresso (`{colors.clay}`, `{colors.espresso}`), olive and sage (`{colors.forest}`, `{colors.sage}`) — and these appear as accent bands, illustration, and score/data-visualisation, never as buttons. Buttons carry a single, deliberate exception: **action blue** (`{colors.primary}` — #2a72de), used only for the decisive conversion moments ("Explore", "Shop All Products"). The warm brand neutral `{colors.stone}` (#4a4741) does the quieter work — the wordmark, editorial pills, form fields, outlines, and links — so the blue never has to compete.
+Visitor mode: Read. Most visitors arrive from Instagram on a phone, often with one hand. Stability and scanability beat spectacle.
 
-**Key Characteristics:**
-- Warm-paper canvas (`{colors.canvas}`) as the default surface, not white — cream is the brand's resting state.
-- A two-typeface voice: `{typography.display}` (Editorial New, a light high-contrast serif) for headlines, `{typography.body}` (AkkuratLL, a neutral grotesque) for reading.
-- One decisive **action blue** (`{colors.primary}`) reserved strictly for primary CTAs; every other button is warm-neutral `{colors.stone}` or cream.
-- An earth-tone accent family — mustard, clay, olive — used for bands, illustration and data-viz, deliberately kept off buttons.
-- Fully-rounded pill buttons (`{rounded.full}`) against softly-rounded cards (`{rounded.lg}`) and large-radius product images (`{rounded.xl}`).
-- Three surface worlds cycling in a predictable rhythm: cream editorial → black news/footer band → silver product stage.
-- Photography-first hierarchy: full-bleed imagery leads, UI recedes to hairlines and quiet labels.
+Three commitments:
+1. One glow per page. The gradient band appears exactly once, behind the hero. It never repeats on cards, buttons, or text.
+2. Dark ground, warm ink, amber action. Nothing else competes for attention.
+3. One serif, one system sans. Literata carries voice and reading; the system sans carries labels and numbers.
 
 ## Colors
 
-> Source pages analysed: the homepage, the Oura Ring 5 store page, the Activity & Movement page, and the Clinical & Science Experts page. The palette below reconciles all four into one system.
+### Ground and surfaces
+- `ground #241A1C` — page. Dark plum-brown, not black. Black reads as a tech product.
+- `surface #33262A` — nav bar, recipe card, homepage cards.
+- `surface-raised #3F3034` — tags, inputs, the servings stepper. The third and last step; nothing is raised above it.
 
-### Brand & Accent
-- **Action Blue** (`{colors.primary}` — #2a72de): the single conversion color. Fills the primary CTA pill ("Explore", "Shop All Products") with `{colors.on-primary}` text. Used nowhere else — not for links, not for accents.
-- **Stone** (`{colors.stone}` — #4a4741): the warm taupe-brown brand neutral. Carries the wordmark, secondary/editorial pill buttons, form-field fills, circular-icon outlines, and default link color. This is the color that makes Oura feel "Oura."
-- **Clay** (`{colors.clay}` — #6b443d): a warm reddish-brown used for accent bands and content cards (e.g., the Activity page's "Your Oura Activity Score" band).
-- **Espresso** (`{colors.espresso}` — #39221e): the darkest brown, for deep accent fills and rich text on gold surfaces.
-- **Gold** (`{colors.gold}` — #af751b) / **Ochre** (`{colors.ochre}` — #bc924c) / **Gold Soft** (`{colors.gold-soft}` — #ddaa61) / **Gold Pale** (`{colors.gold-pale}` — #ddbe78) / **Gold Deep** (`{colors.gold-deep}` — #684d07): the mustard ramp. Powers warm illustration, the activity-ring dashboard card, and score data-visualisation.
-- **Forest** (`{colors.forest}` — #224228) / **Olive** (`{colors.olive}` — #5c6f5d) / **Sage** (`{colors.sage}` — #849671) / **Sage Mute** (`{colors.sage-mute}` — #7b886d) / **Sage Pale** (`{colors.sage-pale}` — #ced4b8): the olive ramp, used for calm accent bands, illustration, and secondary data-visualisation.
-
-### Surface
-- **Canvas** (`{colors.canvas}` — #f7f1e8): the signature warm-paper background for all editorial and marketing surfaces.
-- **Surface** (`{colors.surface}` — #ffffff): pure white, for elevated cards, inputs-on-cream, and the circular "+" overlay buttons on person cards.
-- **Surface Grey** (`{colors.surface-grey}` — #ececec): the light end of the product-page gradient and light utility fills.
-- **Silver** (`{colors.silver}` — #cccac7): the cool grey used on product-showcase pages and as the selected-tab border.
-- **Ink Band** (`{colors.ink-band}` — #000000): the true-black stage for the footer / news band.
-- **Ink Band Soft** (`{colors.ink-band-soft}` — #19191c): the near-black used for the footer surface, a hair warmer than pure black.
-- **Hairline** (`{colors.hairline}` — #e1dcd3): the warm 1px divider on cream (a low-opacity ink wash blended onto canvas).
+Elevation in this theme is lightness, not shadow. Ground → surface → surface-raised. Mechanically inverting a light theme is banned; these three were chosen as a set.
 
 ### Text
-- **Ink** (`{colors.ink}` — #1c1b1a): primary heading and body text on cream.
-- **Stone** (`{colors.stone}` — #4a4741): secondary text and editorial emphasis on cream.
-- **Ash** (`{colors.ash}` — #838280): muted grey for meta text, titles-under-names, and utility captions.
-- **Mute** (`{colors.mute}` — #a8a5a0): warm grey for the quietest captions and for secondary text on dark bands.
-- **On Dark** (`{colors.on-dark}` — #ffffff): text and icons on the ink and silver worlds.
+- `ink #F5E9E2` — all body text, headings, ingredient names.
+- `muted #CDB8B2` — times, yields, captions, "last updated". Same face, softer ink; never smaller than 13px and never a lighter weight.
+- `faint #8F7A7E` — disabled controls, input borders (passes 3:1 for controls).
+- `hairline #4A3A3F` — dividers between ingredient rows and steps. Not for anything interactive (1.6:1).
+
+### The glow
+`radial-gradient(circle, #F2A65A 0%, #D95C7C 22%, transparent 60%)` — an amber core with a pink rim that fades into the ground, the way a sunset lamp throws on a wall. Placement: a circle behind the top-right corner of the hero photo slot, overhanging it, so it reads as light on the wall, not a border. Width ≈ 80% of the hero column on phones, 75% on desktop. No text ever sits on it.
+
+Rules:
+- No text sits on the glow. Title, lead and buttons sit on `ground`; the glow is behind the image slot only. (Pink end is 4.7:1 against ink — too tight for body.)
+- The glow is never a button fill, a tag fill, a text fill, or a card border.
+- One per page, including the homepage (behind the featured recipe).
+
+### Action
+- `accent #F08A4B` with `on-accent #241A1C` text — primary button, the active step numeral, the checked ingredient tick.
+- `link #F2A65A` — inline links, underlined. Hover: underline goes `ink`.
+- Focus ring: `2px solid #F2A65A`, `outline-offset: 3px`, on every control.
 
 ### Semantic
-- **Error** (`{colors.error}` — #e33a22): validation and focus-error state on form fields (the focused email field border).
+- `success #9FD3A8` and `error #FF9A8A`, always paired with text or an icon; colour is never the only signal.
+
+### Verified contrast (WCAG, computed)
+| Pair | Ratio |
+|---|---|
+| ink on ground | 14.2:1 |
+| ink on surface | 12.2:1 |
+| ink on surface-raised | 10.5:1 |
+| muted on ground / surface / raised | 9.0 / 7.6 / 6.6:1 |
+| on-accent on accent | 6.8:1 |
+| link on ground / surface | 8.4 / 7.1:1 |
+| faint on ground (control borders) | 4.2:1 |
+| success, error on ground | 10.0, 8.3:1 |
 
 ## Typography
 
-### Font Family
-Two families carry the entire system, and the tension between them is the point.
+### Families
+- **Literata** (OFL, self-hosted from `assets/fonts/`, variable: `wght 400–700`, `opsz`, plus italic). Fallback stack: `Charter, "Iowan Old Style", "Bitstream Charter", Georgia, serif`. `font-display: swap`; `size-adjust` on the fallback so swap does not reflow the recipe card.
+- **System sans** `system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` for labels, tags, amounts, step numbers, timers. Zero downloads. `font-variant-numeric: tabular-nums` wherever numbers line up.
 
-- **Editorial New** (`{typography.display}`, `{typography.heading-1}`, `{typography.heading-2}`, `{typography.lead}`): a light, high-contrast transitional serif used for display headlines, section titles, and the occasional light-serif lead paragraph. Weights run thin — 100 and 300 — so the large sizes read as elegant, not heavy. The Activity page shows it in italic ("move *count*") for a hand-set editorial flourish.
-- **AkkuratLL** (`{typography.heading-3}` through `{typography.caption}`): a neutral Swiss grotesque that does all the real reading work — subheads, body, UI labels, buttons, captions. Weights 300 / 400 / 600 / 700.
+No third family. No Google Fonts `<link>`, no preconnect to any font host.
 
-### Hierarchy
+### Scale (five sizes, far apart)
+| Role | Size | Use |
+|---|---|---|
+| display | 34–72px, wt 500, lh 1.0, −0.02em | recipe title in the hero, one per page, max 2 lines |
+| heading | 28–40px, wt 500, lh 1.1 | "Ingredients", "Method", homepage section titles, card title |
+| lead | 20–24px, lh 1.35, max 40ch | the one-line intro under the title |
+| body | 17–19px, lh 1.55, max 62ch | everything readable |
+| label | 14px sans, caps, +0.06em | tags, meta, buttons, amounts |
 
-| Token | Family | Size | Weight | Line Height | Use |
-|---|---|---|---|---|---|
-| `{typography.display}` | Editorial New | 110px | 300 | 1.05 | Homepage hero headline ("Subtle. Power.") |
-| `{typography.display-2}` | Editorial New | 80px | 300 | 1.1 | Secondary-page display headlines |
-| `{typography.heading-1}` | Editorial New | 68px | 300 | 1.1 | Large page titles |
-| `{typography.heading-2}` | Editorial New | 40px | 300 | 1.15 | Section headlines |
-| `{typography.heading-3}` | AkkuratLL | 40px | 400 | 1.25 | Sans section headings / large stats |
-| `{typography.title}` | AkkuratLL | 32px | 400 | 1.25 | Card titles, sub-section titles |
-| `{typography.lead}` | Editorial New | 24px | 100 | 1.25 | Light-serif intro / lead paragraphs |
-| `{typography.body-lg}` | AkkuratLL | 20px | 400 | 1.5 | Emphasised body copy |
-| `{typography.body}` | AkkuratLL | 18px | 400 | 1.5 | Default body text |
-| `{typography.body-sm}` | AkkuratLL | 16px | 400 | 1.5 | Dense body, links, form text |
-| `{typography.button}` | AkkuratLL | 16px | 600 | 1 | Button labels |
-| `{typography.ui}` | AkkuratLL | 14px | 400 | 1.4 | Nav links, tabs, utility UI |
-| `{typography.caption}` | AkkuratLL | 13px | 400 | 1.4 | Captions, footnotes |
-| `{typography.eyebrow}` | AkkuratLL | 12px | 700 | 1.2 | Small-caps overlines ("IN THE NEWS", "FEATURED ARTICLE") |
+Light type on dark is compensated on all three axes: body leading 1.55 (not 1.5), +0.005em tracking, and headings at 500 rather than 400.
 
-### Principles
-- Serif for feeling, sans for facts. `{typography.display}` and its siblings appear only at large sizes where the high stroke contrast is legible and expressive; everything at reading scale is `{typography.body}`.
-- Thin display weights. Big serif headlines lean on weight 100–300, so scale — not boldness — creates hierarchy.
-- Quiet overlines. Section context is set with `{typography.eyebrow}` (uppercase, lightly tracked) rather than heavy kickers.
-
-### Note on Font Substitutes
-Both faces are proprietary. For open-source builds, substitute **Editorial New** with **Fraunces** or **Newsreader** (both high-contrast serifs — set optical size high and weight low to match the thin display feel), and **AkkuratLL** with **Inter** or **Hanken Grotesk** (neutral grotesques with similar x-height). When substituting, nudge display line-height up slightly (Fraunces runs a touch taller than Editorial New) and keep body tracking at 0.
+### Rules
+- Headings are not bold. Size and space make them confident; weight 500 is the ceiling.
+- Paragraph rhythm by spacing (`p + p { margin-top: 0.9em }`), no indents.
+- No centred paragraphs longer than three lines. No justified text.
+- Step text is body size; the step numeral is the only thing that gets larger (heading size, sans, `accent`).
+- Ingredient rows: amount in sans tabular, name in Literata. `1 ½ tsp` uses real fraction glyphs.
 
 ## Layout
 
-### Spacing System
-- **Base unit**: 8px.
-- **Tokens**: `{spacing.xxs}` 4px · `{spacing.xs}` 8px · `{spacing.sm}` 12px · `{spacing.md}` 16px · `{spacing.lg}` 24px · `{spacing.xl}` 32px.
-- Card interiors sit at `{spacing.lg}`; tight utility groupings (form padding, chip padding) at `{spacing.sm}`–`{spacing.md}`. Section-to-section rhythm is deliberately large — long vertical gaps of blank cream separate content blocks, letting photography and headlines breathe.
+### Spacing scale (4px base)
+`--s-1: 4px · --s-2: 8px · --s-3: 12px · --s-4: 16px · --s-5: 24px · --s-6: 32px · --s-7: 48px · --s-8: 64px · --s-9: 96px`
 
-### Grid & Container
-- Content is center-constrained within a wide max-width, with full-bleed photography breaking out to the viewport edges.
-- Card grids run 3-up (person cards, benefit trios) and 4-up (news / expert carousels), collapsing toward 1-up on narrow screens.
-- The product page alternates centered single-column showcases with edge-to-edge media.
+Rhythm: tight inside a group (ingredient rows 12px apart), generous between groups (sections 48px on phones, 96px on desktop). One value repeated everywhere is a defect.
 
-### Whitespace Philosophy
-Empty cream is a design element, not leftover space. Large silences between sections group related content and pace the scroll like chapters. UI chrome stays minimal so the eye rests on imagery and headlines.
+### Containers
+- Page gutter: 20px phone, 32px tablet, 48px desktop.
+- Content max width: 68rem.
+- Prose measure: 62ch. Recipe card: max 40rem, centred.
+- Mobile first. Breakpoints only where the layout actually changes: 640px (card grid 1 → 2), 960px (hero becomes two columns; ingredients become a sticky side column next to steps).
 
-### Responsive Strategy
+### Page structure — recipe page
+1. Nav: wordmark left, "Recipes" and "About" right. 56px tall, `surface`.
+2. Hero: title (display), lead, meta row (time · servings · one tag), primary button **Jump to recipe**, photo slot with the glow behind it.
+3. Story: optional, max 3 short paragraphs. Can be skipped entirely by the Jump button.
+4. Recipe card (`id="recipe"`): the printable object.
+5. Email signup: one line + secondary button.
+6. Footer: small, muted.
 
-#### Breakpoints
-| Name | Width | Key Changes |
-|---|---|---|
-| Desktop | ≥ 1280px | Full multi-column grids, horizontal nav, large display type |
-| Laptop | 1024–1279px | Slightly tightened gutters, same structure |
-| Tablet | 768–1023px | 4-up grids → 2-up, nav begins to condense |
-| Mobile | ≤ 767px | Single-column stacks, hamburger nav, display type scales down (110px → ~48px), pill CTAs go full-width-ish |
+### Page structure — homepage
+Nav · featured recipe (same hero pattern, glow behind its photo) · "Latest" grid of recipe cards · email signup · footer.
 
-(Breakpoint ladder observed in the extracted media-query data spans 1280 → 1024 → 896 → 768 → 600 → 480 → 320px.)
-
-#### Touch Targets
-Pill buttons (`button-primary`, `button-secondary`) and circular icon buttons (`button-icon-circular`) are sized for comfortable tapping; keep interactive controls at a minimum 44×44px on touch. Carousel arrows and the "+" person-card buttons are circular and finger-sized.
-
-#### Collapsing Strategy
-- Horizontal nav collapses to a hamburger below the tablet breakpoint; the cart and wordmark persist.
-- Multi-column card grids collapse 4-up → 2-up → 1-up.
-- The silver product showcase keeps its centered single-column media on all sizes and simply scales the imagery.
-- Footer link columns reflow from a 4-column row into stacked groups.
-
-#### Image Behavior
-Photography is full-bleed and art-directed, often edge-to-edge on mobile. Product imagery uses large-radius rounded frames (`{rounded.xl}`); editorial imagery is frequently un-rounded full-bleed. Images lazy-load as sections enter the viewport.
+### Touch targets
+Minimum 44×44px. The floating Jump button is 48px tall, pinned bottom-right on phones with `env(safe-area-inset-bottom)` respected; it hides once the recipe card is in view.
 
 ## Elevation & Depth
-
-| Level | Treatment | Use |
-|---|---|---|
-| 0 — Flat | No shadow; separation by color-world shift or `{colors.hairline}` rule | Default on cream; most sections |
-| 1 — Resting card | Very soft, low-opacity drop shadow | News cards on the black band, the Technical Specifications card |
-| 2 — Floating | Slightly deeper, more diffuse soft shadow | Product-showcase media cards, elevated content cards |
-| 3 — Overlay | Strong diffuse shadow + scrim | Modals / dialogs (rare) |
-
-Depth is understated. On cream, sections separate through the surface-world shift (cream → black → silver) and hairline dividers rather than heavy elevation. Where shadows appear, they are soft, warm, and low-opacity — never hard or high-contrast.
-
-### Decorative Depth
-Depth mostly comes from **photography** (full-bleed lifestyle imagery, machined product renders on the silver stage) and from **warm accent bands** (`{colors.clay}`, `{colors.gold}` families) that recede or advance a section. Subtle radial glows appear behind product imagery on the store page to lift the ring off its grey backdrop.
+- Depth = surface lightness, three steps, documented above.
+- Exactly one drop shadow on the site: the floating Jump button, `0 8px 24px rgba(0,0,0,0.4)`, so it reads as above the page.
+- Cards do not lift, scale, or gain shadows on hover.
+- The glow is a background gradient, not a `filter: blur()`; it costs nothing to scroll.
 
 ## Shapes
-
-### Border Radius Scale
-
-| Token | Value | Use |
-|---|---|---|
-| `{rounded.none}` | 0px | Full-bleed imagery, bands, nav |
-| `{rounded.xs}` | 4px | Small utility chips, tight controls |
-| `{rounded.sm}` | 8px | Small cards, badges, list items |
-| `{rounded.md}` | 12px | Form fields (email input) |
-| `{rounded.lg}` | 24px | Content cards, person cards, news cards |
-| `{rounded.xl}` | 40px | Large product-image cards on the store page |
-| `{rounded.full}` | 9999px | Pill buttons, tabs, circular icon buttons, stat badges |
-
-### Photography Geometry
-Product and lifestyle imagery is generous and soft-cornered: product cards use `{rounded.xl}`, editorial and person imagery uses `{rounded.lg}` or runs full-bleed with no radius. Person cards are near-portrait rectangles with a small circular "+" affordance in the corner. Stat readouts ("99%", "95%", "90%") sit in perfect circles (`{rounded.full}`).
+- Radius scale: `4px` (tags, checkboxes), `12px` (cards, buttons, inputs, photo slot), `999px` (floating Jump button only).
+- Borders: 1px `hairline` between list rows; 1px `faint` on inputs. No borders on cards — surface lightness does the separation.
+- Photo slots: `aspect-ratio: 4 / 5` on phones (Instagram-native), `3 / 2` on desktop. Until photos exist, the slot shows a `surface-raised` panel with a drawn-in-CSS plate (a circle and a ring), not a stock image.
 
 ## Components
 
-> Only Default and (where genuinely extracted) Active/Pressed states are documented. Variants live as separate `components:` entries in the front matter.
-
-### Navigation
-
-**`nav-bar`** — Top navigation on cream
-- Background `{colors.canvas}`, links in `{colors.stone}` at `{typography.ui}`, no radius. Slots: OURA wordmark (left, `{colors.stone}`), center dropdown links (Shop, Your Health, Why Oura, For Organizations), cart icon (right). Sits flush on the cream canvas with no divider until scrolled.
-
-**`announcement-bar`** — Top promo strip
-- Full-width cream strip above the nav, centered `{typography.eyebrow}` text in `{colors.ink}` (e.g. free-trial offer copy). No radius, no background shift — it reads as the top edge of the paper.
-
-### Hero
-
-**`hero`** — Page-opening statement
-- Cream background, `{typography.display}` serif headline in `{colors.ink}` (homepage: "Subtle. Power."), a small serif eyebrow label above, and a single `button-primary` blue pill CTA. Often paired with full-bleed product/lifestyle photography directly beneath the headline.
-
 ### Buttons
+- **Primary** — `accent` fill, `on-accent` text, label type, 48px tall, 12px radius, padding 0 24px. Hover (pointer: fine only): fill `#F2A65A`. Active: `transform: scale(0.97)`. One primary per screen: Jump to recipe.
+- **Secondary** — transparent, 1px `faint` border, `ink` text. Hover: border `ink`. Used for Print, Email signup.
+- **Text link** — `link` colour, underline offset 0.2em, thickness 0.07em. Hover: underline colour `ink`. No weight change on hover.
+- **Floating Jump** — primary styling, pill radius, fixed bottom-right on phones only; a static primary button sits in the hero at every width.
 
-**`button-primary`** — Primary conversion CTA
-- Background `{colors.primary}`, text `{colors.on-primary}`, type `{typography.button}`, fully rounded (`{rounded.full}`). The only blue in the interface. Used for "Explore" and "Shop All Products".
+### Tags and meta
+Pill, `surface-raised`, label type in `muted`, 4px radius, 28px tall. Max three per recipe: time, difficulty, one from {toddler-approved, one-pan, nap-time, freezer}.
 
-**`button-secondary`** — Editorial / secondary action
-- Background `{colors.stone}`, text `{colors.on-stone}`, `{typography.button}`, `{rounded.full}`. The warm-neutral pill for content actions ("Why Oura", "How It Works").
+### Recipe card (the signature component)
+`surface` panel, 12px radius, padding 24px (32px at ≥640px). In order:
+1. Header: title (heading), yield and time in label type, servings stepper.
+2. **Ingredients** (heading): a list, 12px row gap, hairline between rows. Each row: checkbox (CSS-drawn, 20px, tick in `accent`) · amount (sans tabular, `muted`) · name (Literata, `ink`). Amounts rescale with the stepper; the written amounts are the no-JS fallback.
+3. **Method** (heading): ordered list. Each step: numeral (heading size, sans, `accent`) on the left, body text on the right, 24px between steps. Tapping a step marks it current (numeral stays `accent`, others go `muted`) so a cook can find their place after looking away.
+4. Notes: body in `muted`, max 3 lines.
+5. Footer row: Print (secondary), "Save for later" link.
 
-**`button-on-dark`** — Cream pill on dark surfaces
-- Background `{colors.canvas}`, text `{colors.stone}`, `{typography.button}`, `{rounded.full}`. Used for "Read More" and card actions floating on the black news band. (Extracted button variant: cream fill, stone text, full radius.)
+At ≥960px the ingredients column becomes `position: sticky; top: 72px` beside the method.
 
-**`button-outline`** — Outline pill on dark/photo
-- Transparent over `{colors.ink-band}`, 1px `{colors.on-dark}` border, white text, `{rounded.full}`. For low-emphasis actions over dark imagery.
+### Servings stepper
+`surface-raised` pill, − and + buttons 44px each, number in sans tabular `ink`. Writes `data-servings`; amounts recompute client-side. No JS → stepper hidden, written amounts stand.
 
-**`button-outline-stone`** — Outline pill on cream
-- Cream background, 1px `{colors.stone}` border, `{colors.stone}` text, `{rounded.full}`. Low-emphasis action on the paper canvas.
+### Inputs (email signup)
+`surface-raised` fill, 1px `faint` border, `ink` text, 12px radius, 48px tall. Focus: ring as above. Error: border `error` + message text below. The signup is a link to the newsletter provider's hosted page, not an embedded form, so the site itself sets no cookies.
 
-**`button-icon-circular`** — Circular icon control
-- Circular (`{rounded.full}`) control for carousel arrows and the person-card "+" affordance. Two flavours: a white surface circle (`{colors.surface}`) with a hairline edge for the "+" overlays, and a stone-outlined circle for the carousel arrows.
+### Print (recipe card only)
+`@media print`: `ground` → white, all text → `print-ink`, glow/nav/hero/story/signup/footer hidden, card borders become 1px black, checkboxes stay as empty squares, step numerals black. Page break avoided inside a step. Fits one A4/Letter page for a typical recipe.
 
-### Inputs & Forms
+## Motion
 
-**`text-input`** — Newsletter / email field
-- Background `{colors.stone}`, text `{colors.on-stone}`, `{typography.body-sm}`, radius `{rounded.md}` (12px), padding roughly 8px vertical / 20px left with a trailing submit affordance on the right. The dark taupe fill makes the field feel like part of the footer rather than a bright form box.
+Budget: one signature moment, two choreographed entrances, press/hover feedback. Nothing else moves.
 
-**`text-input-focused`** — Focused / error field
-- On focus the field lifts to a light surface (`{colors.surface}`) with `{colors.ink}` text and a `{colors.error}` border for the validation-error state. Radius stays `{rounded.md}`.
-
-### Cards & Containers
-
-**`feature-card`** — Content / benefit card
-- White surface (`{colors.surface}`), `{colors.hairline}` border, `{colors.ink}` text, `{typography.body}`, radius `{rounded.lg}`, padding `{spacing.lg}`. The default soft-cornered content container on cream.
-
-**`feature-card-elevated`** — Floating content card
-- Cream surface (`{colors.canvas}`) with a soft Level-1/2 shadow, `{rounded.lg}`, padding `{spacing.lg}`. Used where a card floats over imagery or the black band (news clippings, spec card).
-
-**`product-card`** — Product-showcase media card
-- Cool grey surface (`{colors.surface-grey}`), large radius `{rounded.xl}` (40px), holds a machined product render on the silver stage, often with a subtle radial glow behind the ring.
-
-**`person-card`** — Expert / leadership card
-- Cream background, portrait photo with radius `{rounded.lg}`, a white circular `button-icon-circular` "+" in the corner, name in `{typography.body}`/`{typography.title}` and role in `{colors.ash}` `{typography.caption}`. Appears in horizontal carousels.
-
-**`news-card`** — News clipping on the dark band
-- Cream card (`{colors.canvas}`) floating on `{colors.ink-band}`, `{colors.ink}` text, `{typography.body}`, `{rounded.lg}`, padding `{spacing.lg}`. Carries a publication quote plus a circular arrow link.
-
-### Signature Components
-
-**`stat-badge`** — Circular stat readout
-- Perfect circle (`{rounded.full}`) on cream with a large `{typography.title}`/`{typography.heading-3}` number in `{colors.stone}` and a small caption beneath (e.g. "99% / 95% / 90%" accuracy figures on the product page).
-
-**`pill-tab`** — Product selector tab
-- Fully-rounded (`{rounded.full}`) tab in a horizontal selector row; selected state gets a `{colors.silver}` (2px) border, label in `{typography.ui}`, `{colors.stone}` text on cream. Used for the "Everyday health sensing" category switcher.
-
-**`eyebrow-label`** — Section overline
-- Uppercase `{typography.eyebrow}` label in `{colors.ink}` on cream, no background, marking section context ("ACTIVITY & MOVEMENT", "FROM THE PULSE BLOG", "FEATURED ARTICLE" as a small pill on imagery).
-
-**`footer`** — Site footer
-- Near-black surface (`{colors.ink-band-soft}`), `{colors.on-dark}` text and `{colors.mute}` secondary text, `{typography.body-sm}`. Contains the OURA wordmark, a newsletter `text-input`, payment-method icons, a 4-column link grid, and a language pill.
-
-### Examples (illustrative)
-
-> Auto-derived kit-mirror demonstration surfaces (`scripts/derive-examples-block.mjs`). Each `ex-*` entry references brand-native primitives so downstream consumers (`/preview-design`, `/generate-kit`) re-skin the same 10 surfaces consistently.
-
-**`ex-pricing-tier`** — Default Pricing tier card. Re-uses feature-card chrome with brand canvas-soft surface.
-- Properties: `backgroundColor`, `textColor`, `borderColor`, `rounded`, `padding`
-
-**`ex-pricing-tier-featured`** — Featured/highlighted tier — polarity-flipped surface (dark fill + light text in light mode, light fill + dark text in dark mode).
-- Properties: `backgroundColor`, `textColor`, `rounded`, `padding`
-
-**`ex-product-selector`** — Color/size picker chrome — fashion / DTC variant selector.
-- Properties: `backgroundColor`, `rounded`, `padding`
-
-**`ex-cart-drawer`** — Shopping cart drawer — DTC / fashion brand actual cart chrome.
-- Properties: `backgroundColor`, `rounded`, `padding`, `item-divider`
-
-**`ex-app-shell-row`** — Sidebar nav row inside the App Shell example. Active state uses brand primary as the indicator.
-- Properties: `backgroundColor`, `activeIndicator`, `rounded`, `padding`
-
-**`ex-data-table-cell`** — Default data-table th + td chrome. Header uses mono-caps eyebrow typography; body uses body-sm.
-- Properties: `headerBackground`, `headerTypography`, `bodyTypography`, `cellPadding`, `rowBorder`
-
-**`ex-auth-form-card`** — Sign-in / sign-up card. Re-uses feature-card chrome with text-input primitives inside.
-- Properties: `backgroundColor`, `rounded`, `padding`
-
-**`ex-modal-card`** — Modal dialog surface — same chrome as feature-card with elevated shadow.
-- Properties: `backgroundColor`, `rounded`, `padding`
-
-**`ex-empty-state-card`** — Empty-state illustration frame.
-- Properties: `backgroundColor`, `rounded`, `padding`, `captionTypography`
-
-**`ex-toast`** — Toast notification surface — feature-card shape + medium shadow.
-- Properties: `backgroundColor`, `rounded`, `padding`, `typography`
-
+- **Signature: the lamp switches on.** On load, the glow fades from `opacity: 0` to `1` over 900ms `--ease-soft`, after a 150ms delay, once per page. That is the only loud move.
+- **Hero entrance:** title, lead, button rise 18px with opacity, 90ms stagger, 800ms `--ease-out`. Max three elements.
+- **Method entrance:** steps rise row by row on first scroll into view (IntersectionObserver, `unobserve` after), 60ms stagger. Ingredients do not animate; they are the thing the cook is reading.
+- **Feedback:** button press 140ms scale 0.97; link underline colour 180ms; checkbox tick 140ms. Hover rules only under `(hover: hover) and (pointer: fine)`.
+- **Tokens:** `--ease-out: cubic-bezier(0.22,1,0.36,1)`, `--ease-soft: cubic-bezier(0.33,1,0.68,1)`, `--t-press: 140ms`, `--t-hover: 180ms`, `--t-reveal: 800ms`. Animate only `transform` and `opacity`. Named properties, never `transition: all`.
+- **Reduced motion:** glow and sections render in their finished state; press/hover colour changes stay.
+- **No JS:** nothing is hidden; animation classes apply only under `html.js`.
 
 ## Do's and Don'ts
 
 ### Do
-- Reserve `{colors.primary}` strictly for the primary conversion CTA — one blue moment per view, maximum.
-- Default every surface to `{colors.canvas}` (warm paper), not white. White (`{colors.surface}`) is for elevated cards and inputs, not backgrounds.
-- Use `{colors.stone}` for the wordmark, secondary pills, outlines, form fills, and links — it is the workhorse neutral.
-- Pair `{typography.display}` (thin serif) at large sizes with `{typography.body}` (grotesque) for reading; let scale create hierarchy.
-- Keep pills fully rounded (`{rounded.full}`) and cards softly rounded (`{rounded.lg}`); use `{rounded.xl}` only for large product imagery.
-- Let the earth-tone ramps (gold, clay, olive) live in bands, illustration, and data-viz — as color-blocked sections that pace the scroll.
-- Give sections large vertical breathing room; treat empty cream as structure.
+- Keep time and servings above the fold on phones.
+- Let Jump to recipe land exactly on the card header.
+- Write amounts with real fraction glyphs and tabular numerals.
+- Put one photo per recipe at 4:5 for phones; mark the slot clearly when it's empty.
+- Load only the Literata weights used (400, 500 upright; 400 italic).
+- Verify every colour pair after any change; the table above is the floor.
 
 ### Don't
-- Don't use `{colors.primary}` for links, accents, icons, or decorative fills — it must stay unique to the primary CTA.
-- Don't put the mustard/olive accent colors on buttons — they are surfaces and illustration, never actions.
-- Don't set body copy in `{typography.display}`; the thin serif is display-only and gets illegible at small sizes.
-- Don't default backgrounds to white — it breaks the warm-paper identity.
-- Don't add heavy or hard-edged shadows; elevation here is soft, warm, and low-opacity.
-- Don't crowd sections — compressing the vertical rhythm collapses the calm, editorial pacing that defines the brand.
+- No cream, terracotta, or light theme variant. The site is dark on purpose.
+- No violet, indigo, or neon.
+- No text on the glow; no gradient on text, buttons, tags, or borders.
+- No second glow anywhere on a page.
+- No Google Fonts link, no CDN, no third-party requests, no cookies.
+- No hover lift, scale, or shadow on cards; no bounce or elastic easing.
+- No same fade-up on every block; ingredients never animate.
+- No bold headings; weight 500 is the ceiling.
+- No centred long paragraphs, no justified text, no text smaller than 13px.
+- No emoji in headings, no "Delicious!" / "Yummy in your tummy" copy, no stock-photo placeholders.
+- No ads, no pop-ups, no cookie banner (there is nothing to consent to).
