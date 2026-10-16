@@ -154,6 +154,17 @@
       margin: 0 0 1.5rem;
     }
     .lead { font-size: 1.25rem; max-width: 30rem; margin: 0; text-wrap: pretty; }
+    .pitch { font-size: 1.1rem; max-width: 30rem; margin: 1rem 0 0; color: var(--muted); text-wrap: pretty; }
+    .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.5rem; padding: 0; }
+    .tags li {
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0.35rem 0.85rem;
+      color: var(--cocoa);
+      background: var(--gold-soft);
+      border-radius: 999px;
+    }
 
     /* Buttons */
     .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
@@ -323,6 +334,7 @@
       font-size: 0.95rem;
       color: #E9DCCB;
     }
+    .allergens.fine-print { margin-top: 0.9rem; padding-top: 0; border-top: 0; font-size: 0.9rem; }
 
     .steps-col { grid-column: 6 / 13; padding-left: 1rem; }
     .steps { list-style: none; counter-reset: step; margin: 0; padding: 0; }
@@ -388,6 +400,44 @@
     .nf-row.sub { padding-left: 1rem; }
     .nf-foot { font-size: 0.72rem; line-height: 1.35; }
 
+    /* Protein builder (what-if; does not change the recipe) */
+    .builder { padding: 0 0 5.5rem; }
+    .builder-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1rem; }
+    .builder-note { margin: 1rem 0 0; max-width: 34rem; color: var(--muted); }
+    .builder-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2rem 1.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .builder-controls { grid-column: 1 / 8; display: grid; gap: 1.5rem; }
+    .pick-label { display: block; font-family: var(--display); font-size: 1.15rem; color: var(--maple); margin-bottom: 0.5rem; }
+    .pick-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pick-options .mini { padding: 0.45rem 1rem; font-size: 0.95rem; }
+    .pick-options .mini[aria-pressed="true"] { background: var(--cocoa); color: var(--on-dark); }
+    .readout {
+      grid-column: 8 / 13;
+      margin: 0;
+      padding: 1.4rem 1.6rem;
+      display: grid;
+      gap: 1.25rem;
+      background: var(--cocoa);
+      color: var(--on-dark);
+      border-radius: var(--radius);
+    }
+    .readout div { display: flex; flex-direction: column-reverse; }
+    .readout dt { font-size: 0.9rem; color: #D8C8B6; line-height: 1.3; }
+    .readout dd { margin: 0; font-family: var(--display); font-size: 2.4rem; line-height: 1.05; color: var(--gold); font-variant-numeric: tabular-nums; }
+    .builder-tip {
+      margin: 1.5rem 0 0;
+      padding: 1rem 1.25rem;
+      background: var(--gold-soft);
+      border-radius: var(--radius);
+      max-width: 60ch;
+      min-height: 3.6em;
+    }
+
     /* About */
     .about {
       display: grid;
@@ -438,6 +488,10 @@
       .ingredients { position: static; padding: 1.5rem; margin-bottom: 2.5rem; }
       .steps-col { padding-left: 0; }
       .nutrition { padding-bottom: 3.5rem; }
+      .builder { padding-bottom: 3.5rem; }
+      .builder-grid { display: block; }
+      .readout { margin-top: 1.75rem; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+      .readout dd { font-size: 2rem; }
       .about { display: block; padding-bottom: 3.5rem; }
       .about-photo { max-width: 22rem; margin-bottom: 2rem; }
     }
@@ -453,7 +507,8 @@
     @media print {
       body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
       .leaves, .site-header, .actions, .hero-visual, .strip, .recipe-tools, .cook-status,
-      .tap-note, .about, .site-footer, .plate, .badge { display: none !important; }
+      .tap-note, .about, .site-footer, .plate, .badge, .pitch, .builder { display: none !important; }
+      .tags li { background: #fff; border: 1px solid #777; color: #000; }
       .wrap { width: 100%; }
       .hero { display: block; padding: 0 0 1rem; }
       .hero-copy { max-width: none; }
@@ -511,7 +566,14 @@
         <div class="hero-copy">
           <h1 id="title">Banana Maple Chocolate Chip Protein Bread</h1>
           <p class="subtitle">Oat, almond and coconut flour</p>
+          <ul class="tags" aria-label="Good to know">
+            <li>Gluten-free</li>
+            <li>No refined sugar</li>
+            <li>Butter-free</li>
+            <li>9 g protein a slice</li>
+          </ul>
           <p class="lead">Made with oat, almond and coconut flour, Greek yogurt and eggs. Sweetened with maple syrup.</p>
+          <p class="pitch">Made for the 4 o'clock slump: after daycare pickup, or between back-to-back calls. One slice holds a hungry toddler or a tired parent until dinner.</p>
           <p class="print-line">Bakes 55 to 65 minutes. Makes 1 loaf. 9 x 4.5 in loaf pan.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#recipe" data-umami-event="jump-to-recipe" data-umami-event-place="hero">Jump to recipe</a>
@@ -593,6 +655,7 @@
             </ul>
 
             <p class="allergens">Contains eggs, dairy and tree nuts (almond flour, and walnuts if used).</p>
+            <p class="allergens fine-print">Gluten-free when you use certified gluten-free oat flour and a gluten-free protein powder. No refined sugar: sweetened with maple syrup and banana. The yogurt and chocolate chips bring their own sugar.</p>
           </aside>
 
           <div class="steps-col">
@@ -645,6 +708,51 @@
         </div>
       </section>
 
+      <section class="builder" id="protein" aria-labelledby="builder-title" hidden>
+        <div class="builder-head">
+          <h2 id="builder-title">Want more protein?</h2>
+          <span class="badge">What-if, not the recipe</span>
+        </div>
+        <p class="builder-note">The recipe above stays exactly as written. This only shows what one slice would look like if you swapped or added. Pick, and the numbers follow.</p>
+
+        <div class="builder-grid">
+          <div class="builder-controls">
+            <div class="pick" role="group" aria-labelledby="pick-powder">
+              <span class="pick-label" id="pick-powder">Protein powder</span>
+              <div class="pick-options">
+                <button class="mini" type="button" data-pick="powder" data-value="none" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-none">None</button>
+                <button class="mini" type="button" data-pick="powder" data-value="vegan" aria-pressed="true" data-umami-event="protein-builder" data-umami-event-pick="powder-vegan">1 scoop vegan</button>
+                <button class="mini" type="button" data-pick="powder" data-value="whey" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-whey">1 scoop whey</button>
+                <button class="mini" type="button" data-pick="powder" data-value="two" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-two">2 scoops</button>
+              </div>
+            </div>
+            <div class="pick" role="group" aria-labelledby="pick-chia">
+              <span class="pick-label" id="pick-chia">Chia seeds</span>
+              <div class="pick-options">
+                <button class="mini" type="button" data-pick="chia" data-value="none" aria-pressed="true" data-umami-event="protein-builder" data-umami-event-pick="chia-none">None</button>
+                <button class="mini" type="button" data-pick="chia" data-value="two-tbsp" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="chia-2tbsp">2 tbsp</button>
+                <button class="mini" type="button" data-pick="chia" data-value="quarter-cup" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="chia-quarter-cup">¼ cup</button>
+              </div>
+            </div>
+            <div class="pick" role="group" aria-labelledby="pick-egg">
+              <span class="pick-label" id="pick-egg">Extra egg</span>
+              <div class="pick-options">
+                <button class="mini" type="button" data-pick="egg" data-value="none" aria-pressed="true" data-umami-event="protein-builder" data-umami-event-pick="egg-none">No</button>
+                <button class="mini" type="button" data-pick="egg" data-value="one" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="egg-one">Add 1 egg</button>
+              </div>
+            </div>
+          </div>
+
+          <dl class="readout" aria-live="polite">
+            <div><dt>g protein a slice</dt><dd id="out-protein">9.0</dd></div>
+            <div><dt>calories a slice</dt><dd id="out-kcal">267</dd></div>
+            <div><dt>g protein per 100 kcal</dt><dd id="out-density">3.4</dd></div>
+          </dl>
+        </div>
+
+        <p class="builder-tip" id="builder-tip">As written on the page.</p>
+      </section>
+
       <section class="about" id="about" aria-labelledby="about-title">
         <div class="about-photo">
           <img src="assets/images/about-aditi.jpg" width="1200" height="1600"
@@ -695,6 +803,59 @@
           leafBtn.textContent = paused ? 'Play leaves' : 'Pause leaves';
           leafBtn.setAttribute('aria-pressed', String(paused));
         });
+      }
+
+      /* Protein builder: a what-if readout. It never touches the recipe. */
+      var builder = document.querySelector('.builder');
+      if (builder) {
+        // Loaf totals without powder, derived from the Nutrition estimate (9 g / 267 kcal a slice with a 25 g / 120 kcal scoop).
+        var baseProtein = 65, baseKcal = 2550, slices = 10;
+        var options = {
+          powder: {
+            none:  { p: 0,  k: 0,   note: '' },
+            vegan: { p: 25, k: 120, note: 'As written on the page.' },
+            whey:  { p: 24, k: 120, note: 'Whey bakes a little drier and chewier. Add 1 to 2 tbsp more milk or yogurt, and pull the loaf a few minutes early.' },
+            two:   { p: 50, k: 240, note: 'Two scoops make a denser, drier crumb. Add 3 to 4 tbsp more milk and expect a tighter loaf.' }
+          },
+          chia: {
+            'none':        { p: 0,   k: 0,   note: '' },
+            'two-tbsp':    { p: 4,   k: 116, note: 'Chia soaks up liquid. Stir in 2 tbsp more milk, or let the batter rest 10 minutes. It adds fibre and a little crunch.' },
+            'quarter-cup': { p: 6.6, k: 195, note: 'A quarter cup of chia is a lot. Add ¼ cup more milk or the loaf turns gummy.' }
+          },
+          egg: {
+            none: { p: 0,   k: 0,  note: '' },
+            one:  { p: 6.3, k: 72, note: 'A third egg gives more lift and a softer, slightly custardy crumb. It may need 5 more minutes in the oven.' }
+          }
+        };
+        var picks = { powder: 'vegan', chia: 'none', egg: 'none' };
+        var outProtein = document.getElementById('out-protein');
+        var outKcal = document.getElementById('out-kcal');
+        var outDensity = document.getElementById('out-density');
+        var tip = document.getElementById('builder-tip');
+
+        function renderBuilder() {
+          var p = baseProtein, k = baseKcal, notes = [];
+          Object.keys(picks).forEach(function (group) {
+            var o = options[group][picks[group]];
+            p += o.p; k += o.k;
+            if (o.note) notes.push(o.note);
+          });
+          outProtein.textContent = (p / slices).toFixed(1);
+          outKcal.textContent = String(Math.round(k / slices));
+          outDensity.textContent = (p / k * 100).toFixed(1);
+          tip.textContent = notes.length ? notes.join(' ') : 'No powder: the softest crumb, about the protein of a regular almond-flour banana bread.';
+          builder.querySelectorAll('[data-pick]').forEach(function (b) {
+            b.setAttribute('aria-pressed', String(picks[b.dataset.pick] === b.dataset.value));
+          });
+        }
+        builder.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-pick]');
+          if (!b) return;
+          picks[b.dataset.pick] = b.dataset.value;
+          renderBuilder();
+        });
+        renderBuilder();
+        builder.hidden = false;
       }
 
       /* Cook mode */
