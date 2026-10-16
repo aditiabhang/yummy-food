@@ -14,7 +14,7 @@
   <meta property="og:title" content="Banana Maple Chocolate Chip Protein Bread (Oat, Almond and Coconut Flour)">
   <meta property="og:description" content="Banana bread made with oat, almond and coconut flour, Greek yogurt and eggs, sweetened with maple syrup.">
   <meta property="og:url" content="https://aditiabhang.github.io/yummy-food/">
-  <meta property="og:image" content="https://aditiabhang.github.io/yummy-food/assets/images/banana-loaf-hero.jpg">
+  <meta property="og:image" content="https://aditiabhang.github.io/yummy-food/assets/images/banana-loaf-3.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1600">
   <meta property="og:image:alt" content="Baked banana bread topped with mini chocolate chips in a loaf pan">
@@ -26,7 +26,7 @@
     "@type": "Recipe",
     "name": "Banana Maple Chocolate Chip Protein Bread (Oat, Almond and Coconut Flour)",
     "description": "Banana bread made with oat, almond and coconut flour, Greek yogurt and eggs, sweetened with maple syrup, with chocolate chips.",
-    "image": ["https://aditiabhang.github.io/yummy-food/assets/images/banana-loaf-hero.jpg"],
+    "image": ["https://aditiabhang.github.io/yummy-food/assets/images/banana-loaf-3.jpg"],
     "author": { "@type": "Person", "name": "Aditi" },
     "cookTime": "PT1H",
     "recipeYield": "1 loaf",
@@ -246,10 +246,10 @@
       align-items: center;
       padding: 0 0 5.5rem;
     }
-    .strip-text { grid-column: 1 / 5; }
+    .strip-text { grid-column: 1 / 6; }
     .strip-text p {
       font-family: var(--display);
-      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+      font-size: clamp(1.4rem, 2.4vw, 1.7rem);
       line-height: 1.35;
       margin: 0;
       text-wrap: pretty;
@@ -404,38 +404,44 @@
     .builder { padding: 0 0 5.5rem; }
     .builder-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1rem; }
     .builder-note { margin: 1rem 0 0; max-width: 34rem; color: var(--muted); }
-    .builder-grid {
+    .split {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 2rem 1.5rem;
-      align-items: start;
+      grid-template-columns: 1fr 21rem;
       margin-top: 2rem;
+      background: #fff;
+      border: 2px solid var(--cocoa);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
-    .builder-controls { grid-column: 1 / 8; display: grid; gap: 1.5rem; }
-    .pick-label { display: block; font-family: var(--display); font-size: 1.15rem; color: var(--maple); margin-bottom: 0.5rem; }
+    .split-left { padding: 1.25rem 1.5rem 1.1rem; font-family: Arial, Helvetica, sans-serif; color: #111; }
+    .split-left .nf-title { font-size: 1.6rem; }
+    .pick { padding: 0.8rem 0; border-top: 1px solid #111; }
+    .nf-bar + .pick { border-top: 0; }
+    .pick-label { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.55rem; }
     .pick-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .pick-options .mini { padding: 0.45rem 1rem; font-size: 0.95rem; }
+    .pick-options .mini { padding: 0.45rem 1rem; font-size: 0.95rem; font-family: var(--body); }
     .pick-options .mini[aria-pressed="true"] { background: var(--cocoa); color: var(--on-dark); }
     .readout {
-      grid-column: 8 / 13;
-      margin: 0;
+      margin: 0.75rem;
       padding: 1.4rem 1.6rem;
       display: grid;
+      align-content: center;
       gap: 1.25rem;
       background: var(--cocoa);
       color: var(--on-dark);
-      border-radius: var(--radius);
+      border-radius: calc(var(--radius) - 4px);
     }
     .readout div { display: flex; flex-direction: column-reverse; }
     .readout dt { font-size: 0.9rem; color: #D8C8B6; line-height: 1.3; }
     .readout dd { margin: 0; font-family: var(--display); font-size: 2.4rem; line-height: 1.05; color: var(--gold); font-variant-numeric: tabular-nums; }
+    .readout .delta { font-family: var(--body); font-size: 0.85rem; color: #D8C8B6; margin-left: 0.45rem; }
+    .readout .delta:empty { display: none; }
     .builder-tip {
-      margin: 1.5rem 0 0;
-      padding: 1rem 1.25rem;
-      background: var(--gold-soft);
-      border-radius: var(--radius);
-      max-width: 60ch;
-      min-height: 3.6em;
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #333;
+      min-height: 2.8em;
     }
 
     /* About */
@@ -463,8 +469,9 @@
       object-position: 50% 58%;
       border-radius: var(--radius);
     }
-    .about-text { grid-column: 7 / 12; }
+    .about-text { grid-column: 7 / 13; }
     .about-text p { margin: 0.75rem 0 0; font-size: 1.2rem; max-width: 30rem; }
+    .about-text .lines { max-width: none; font-size: 1.15rem; }
     .about-text .btn { margin-top: 1.5rem; }
     .about-text .nerd { margin-top: 1.5rem; font-size: 1rem; color: var(--muted); }
 
@@ -489,10 +496,12 @@
       .steps-col { padding-left: 0; }
       .nutrition { padding-bottom: 3.5rem; }
       .builder { padding-bottom: 3.5rem; }
-      .builder-grid { display: block; }
-      .readout { margin-top: 1.75rem; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+      .split { display: block; }
+      .split-left { padding: 1rem 1.1rem 0.9rem; }
+      .readout { grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
       .readout dd { font-size: 2rem; }
       .about { display: block; padding-bottom: 3.5rem; }
+      .lines br { display: none; } /* narrow screens: let the lines flow as a sentence */
       .about-photo { max-width: 22rem; margin-bottom: 2rem; }
     }
 
@@ -572,7 +581,7 @@
             <li>Butter-free</li>
             <li>9 g protein a slice</li>
           </ul>
-          <p class="lead">Made with oat, almond and coconut flour, Greek yogurt and eggs. Sweetened with maple syrup.</p>
+          <p class="lead">Made with oat, almond and coconut flour, greek yogurt and eggs. Sweetened with maple syrup.</p>
           <p class="pitch">Made for the 4 o'clock slump: after daycare pickup, or between back-to-back calls. One slice holds a hungry toddler or a tired parent until dinner.</p>
           <p class="print-line">Bakes 55 to 65 minutes. Makes 1 loaf. 9 x 4.5 in loaf pan.</p>
           <div class="actions">
@@ -583,7 +592,7 @@
 
         <div class="hero-visual">
           <figure class="hero-photo">
-            <img src="assets/images/banana-loaf-hero.jpg" width="1200" height="1600"
+            <img src="assets/images/banana-loaf-3.jpg" width="1200" height="1600"
                  alt="Baked banana bread topped with mini chocolate chips in a loaf pan"
                  fetchpriority="high" decoding="async">
           </figure>
@@ -597,7 +606,7 @@
 
       <section class="strip" aria-label="More photos">
         <div class="strip-text">
-          <p>Ripe bananas, a few pantry staples, one bowl for wet and one for dry. Mix, pour, bake.</p>
+          <p class="lines">ripe bananas,<br>a few pantry staples,<br>one bowl for wet and one for dry.<br>mix, pour, bake. 🍌</p>
         </div>
         <div class="strip-photos">
           <figure>
@@ -605,7 +614,7 @@
                  alt="Close-up of the golden crust and chocolate chips on the banana bread" loading="lazy" decoding="async">
           </figure>
           <figure>
-            <img src="assets/images/banana-loaf-3.jpg" width="1200" height="1600"
+            <img src="assets/images/banana-loaf-hero.jpg" width="1200" height="1600"
                  alt="Banana bread with chocolate chips, fresh from the oven" loading="lazy" decoding="async">
           </figure>
         </div>
@@ -633,7 +642,7 @@
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">¼ cup olive oil (EVOO or light olive oil)</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">2 large eggs</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">1 tsp vanilla extract</span></label></li>
-              <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">⅓ cup strawberry Greek yogurt</span></label></li>
+              <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">⅓ cup strawberry greek yogurt</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">¼ cup milk (any kind)</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">1 tbsp applesauce (optional but recommended for moisture)</span></label></li>
             </ul>
@@ -710,18 +719,21 @@
 
       <section class="builder" id="protein" aria-labelledby="builder-title" hidden>
         <div class="builder-head">
-          <h2 id="builder-title">Want more protein?</h2>
+          <h2 id="builder-title">Want more protein? 💪</h2>
           <span class="badge">What-if, not the recipe</span>
         </div>
         <p class="builder-note">The recipe above stays exactly as written. This only shows what one slice would look like if you swapped or added. Pick, and the numbers follow.</p>
 
-        <div class="builder-grid">
-          <div class="builder-controls">
+        <div class="split">
+          <div class="split-left">
+            <div class="nf-title">Build your slice</div>
+            <div class="nf-serving">Per 1 slice (1/10 of loaf). The recipe above stays as written.</div>
+            <div class="nf-bar thick"></div>
             <div class="pick" role="group" aria-labelledby="pick-powder">
               <span class="pick-label" id="pick-powder">Protein powder</span>
               <div class="pick-options">
                 <button class="mini" type="button" data-pick="powder" data-value="none" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-none">None</button>
-                <button class="mini" type="button" data-pick="powder" data-value="vegan" aria-pressed="true" data-umami-event="protein-builder" data-umami-event-pick="powder-vegan">1 scoop vegan</button>
+                <button class="mini" type="button" data-pick="powder" data-value="vegan" aria-pressed="true" data-umami-event="protein-builder" data-umami-event-pick="powder-vegan">1 scoop vegan (as written)</button>
                 <button class="mini" type="button" data-pick="powder" data-value="whey" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-whey">1 scoop whey</button>
                 <button class="mini" type="button" data-pick="powder" data-value="two" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="powder-two">2 scoops</button>
               </div>
@@ -741,16 +753,16 @@
                 <button class="mini" type="button" data-pick="egg" data-value="one" aria-pressed="false" data-umami-event="protein-builder" data-umami-event-pick="egg-one">Add 1 egg</button>
               </div>
             </div>
+            <div class="nf-bar thick"></div>
+            <p class="builder-tip" id="builder-tip">As written on the page.</p>
           </div>
 
           <dl class="readout" aria-live="polite">
-            <div><dt>g protein a slice</dt><dd id="out-protein">9.0</dd></div>
-            <div><dt>calories a slice</dt><dd id="out-kcal">267</dd></div>
-            <div><dt>g protein per 100 kcal</dt><dd id="out-density">3.4</dd></div>
+            <div><dt>g protein a slice</dt><dd><span id="out-protein">9.0</span><span class="delta" id="delta-protein"></span></dd></div>
+            <div><dt>calories a slice</dt><dd><span id="out-kcal">267</span><span class="delta" id="delta-kcal"></span></dd></div>
+            <div><dt>g protein per 100 kcal</dt><dd><span id="out-density">3.4</span><span class="delta" id="delta-density"></span></dd></div>
           </dl>
         </div>
-
-        <p class="builder-tip" id="builder-tip">As written on the page.</p>
       </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
@@ -759,12 +771,12 @@
                alt="Aditi smiling under bright autumn maple trees" loading="lazy" decoding="async">
         </div>
         <div class="about-text">
-          <h2 id="about-title">Hi, my name is Aditi.</h2>
-          <p>I'm a toddler boy mom for love, a software/technical/emotional support engineer for work and a strength trainer for mind.</p>
+          <h2 id="about-title">Hi, my name is Aditi. 👋</h2>
+          <p class="lines">I'm a toddler boy mom for love 💕,<br>a software/technical/emotional support engineer for work 👩🏻‍💻,<br>and a strength trainer for mind 🏋🏻‍♂️🧘🏻‍♀️.</p>
           <p>I cook simple food that works for real life.</p>
           <a class="btn btn-primary" href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener"
              data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="about">Say hi on Instagram @mi_aditi</a>
-          <p class="nerd">Nerdies, I'm running this site like a tiny experiment. Want to see the tracking numbers or swap ideas? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener"
+          <p class="nerd">Hi fellow nerdies 🤓, I'm running this site like a tiny experiment. Want to see the tracking numbers or swap ideas? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener"
              data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="nerd-line">DM me on insta</a>.</p>
         </div>
       </section>
@@ -832,6 +844,14 @@
         var outKcal = document.getElementById('out-kcal');
         var outDensity = document.getElementById('out-density');
         var tip = document.getElementById('builder-tip');
+        var deltaProtein = document.getElementById('delta-protein');
+        var deltaKcal = document.getElementById('delta-kcal');
+        var deltaDensity = document.getElementById('delta-density');
+        var written = { p: baseProtein + options.powder.vegan.p, k: baseKcal + options.powder.vegan.k };
+        function delta(value, base, digits) {
+          var d = +(value - base).toFixed(digits);
+          return d === 0 ? '' : (d > 0 ? '+' : '\u2212') + Math.abs(d).toFixed(digits);
+        }
 
         function renderBuilder() {
           var p = baseProtein, k = baseKcal, notes = [];
@@ -843,6 +863,9 @@
           outProtein.textContent = (p / slices).toFixed(1);
           outKcal.textContent = String(Math.round(k / slices));
           outDensity.textContent = (p / k * 100).toFixed(1);
+          deltaProtein.textContent = delta(p / slices, written.p / slices, 1);
+          deltaKcal.textContent = delta(Math.round(k / slices), Math.round(written.k / slices), 0);
+          deltaDensity.textContent = delta(p / k * 100, written.p / written.k * 100, 1);
           tip.textContent = notes.length ? notes.join(' ') : 'No powder: the softest crumb, about the protein of a regular almond-flour banana bread.';
           builder.querySelectorAll('[data-pick]').forEach(function (b) {
             b.setAttribute('aria-pressed', String(picks[b.dataset.pick] === b.dataset.value));
