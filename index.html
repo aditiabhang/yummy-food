@@ -31,7 +31,7 @@
     "cookTime": "PT1H",
     "recipeYield": "1 loaf",
     "recipeIngredient": [
-      "2-3 large ripe bananas, mashed",
+      "3 large ripe bananas, mashed",
       "1/3 cup pure maple syrup",
       "1/4 cup olive oil (EVOO or light olive oil)",
       "2 large eggs",
@@ -512,8 +512,116 @@
       .btn, .check .box, .check .box::after { transition: none; }
     }
 
+
+    /* ===== Paper theme ===== */
+    :root { --sand: #EADBC2; --pshadow: 0 1px 0 rgba(43,27,20,.08), 0 10px 24px -10px rgba(43,27,20,.35); }
+    html { overflow-x: clip; }
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .3; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .6 0 0 0 0 .5 0 0 0 0 .4 0 0 0 .18 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    }
+    .leaves { z-index: 55; }
+    .leaf { top: -120px; width: 44px; pointer-events: auto; cursor: pointer; }
+    .leaf img { width: 100%; filter: drop-shadow(0 6px 6px rgba(43,27,20,.35)); animation: leaf-sway ease-in-out infinite alternate; }
+    .leaf.caught img { animation: leaf-pop .5s ease-out forwards; }
+    @keyframes leaf-pop { 50% { transform: scale(1.4) rotate(25deg); opacity: 1; } to { transform: scale(.1); opacity: 0; } }
+    .basket { position: fixed; left: .9rem; bottom: .9rem; z-index: 58; background: var(--paper); padding: .5rem .85rem; border-radius: 6px; box-shadow: var(--pshadow); font-size: .9rem; transform: rotate(1.5deg); }
+    .basket b { font-family: var(--display); font-size: 1.25rem; color: var(--maple); }
+    .site-header { position: absolute; left: 0; right: 0; top: 0; z-index: 4; }
+    .nav a { color: var(--cocoa); background: var(--paper); padding: .3rem .8rem; border-radius: 4px; text-decoration: none; box-shadow: var(--pshadow); transform: rotate(1deg); display: inline-block; }
+    .mini { color: var(--cocoa); background: var(--gold-soft); border: 0; box-shadow: var(--pshadow); }
+    .nav .mini { transform: rotate(-1.5deg); }
+    .hero { position: relative; padding: 6rem 0 7rem; align-items: end; }
+    .hero::before { content: ""; position: absolute; inset: 0 -100vw; z-index: 0; background: url("assets/images/paper-sunset.jpg") center 62% / cover no-repeat; }
+    .hero-copy { background: var(--paper); padding: 1.8rem 2rem 1.6rem; border-radius: 6px; box-shadow: var(--pshadow), 0 30px 50px -30px rgba(43,27,20,.6); transform: rotate(-1.2deg); }
+    .hero-copy::after { content: ""; position: absolute; inset: 10px -10px -10px 10px; background: var(--gold-soft); z-index: -1; border-radius: 6px; transform: rotate(2deg); box-shadow: var(--pshadow); }
+    .hero-copy h1 { font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
+    .lead { font-size: 1.1rem; }
+    .hero-visual::before { display: none; }
+    .hero-photo { margin: 0; padding: 12px 12px 14px; background: var(--paper); border-radius: 4px; box-shadow: var(--pshadow), 0 30px 50px -30px rgba(43,27,20,.6); transform: rotate(2deg); animation: none; overflow: visible; aspect-ratio: auto; }
+    .hero-photo .zoom { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; }
+    .hero-photo img { transform: scale(1.18); object-position: 50% 45%; }
+    .tape { position: absolute; top: -10px; left: 50%; width: 90px; height: 24px; margin-left: -45px; background: rgba(242,178,51,.6); transform: rotate(-4deg); z-index: 2; }
+    .facts { left: auto; right: -1rem; bottom: -1.5rem; background: var(--paper); color: var(--ink); box-shadow: var(--pshadow); transform: rotate(-2deg); }
+    .facts dt { color: var(--muted); } .facts dd { color: var(--maple); }
+    .tear { display: block; width: 100vw; height: 48px; margin: -47px calc(50% - 50vw) 0; position: relative; z-index: 2; }
+    .strip { padding-top: 3.5rem; }
+    .strip-photos figure { position: relative; padding: 10px 10px 12px; background: var(--paper); box-shadow: var(--pshadow); transform: rotate(-2deg); }
+    .strip-photos figure:last-child { transform: rotate(1.6deg); }
+    .strip-photos figure img { border-radius: 2px; }
+    .recipe, .nutrition, .builder { position: relative; }
+    .recipe::before, .nutrition::before, .builder::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--gold-soft); z-index: -1; }
+    .recipe { padding-top: 3rem; }
+    .ingredients { background: var(--paper); color: var(--ink); box-shadow: var(--pshadow); transform: rotate(-.6deg); }
+    .ingredients h2, .ingredients h3 { color: var(--ink); } .ingredients h3 { color: var(--maple); }
+    .ingredients li + li { border-top-color: var(--line); }
+    .ingredients :focus-visible { outline-color: var(--maple); }
+    .allergens { color: var(--muted); border-top-color: var(--line); }
+    .check .box { border-color: var(--cocoa); }
+    .check input:checked ~ .label { text-decoration: line-through; color: var(--muted); }
+    .check input:checked ~ .box { animation: stamp .3s ease-out; }
+    @keyframes stamp { 50% { transform: scale(1.35) rotate(-8deg); } }
+    .tap-note { margin: .6rem 0 0; }
+    .tap-badge { display: inline-block; background: var(--maple); color: var(--paper); padding: .3rem .8rem; border-radius: 999px; font-size: .85rem; box-shadow: var(--pshadow); animation: wiggle 2.4s ease-in-out infinite; }
+    @keyframes wiggle { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(-2px); } }
+    .steps li { border-top-color: var(--line); }
+    .tip { background: var(--paper); box-shadow: var(--pshadow); transform: rotate(.8deg); }
+    .plate { padding: 10px 10px 12px; background: var(--paper); box-shadow: var(--pshadow); transform: rotate(-1.5deg); }
+    .nf { box-shadow: var(--pshadow); transform: rotate(.6deg); }
+    /* builder: one paper block, cocoa readout with soft edge */
+    .builder { padding-top: 0; }
+    .split { border: 0; box-shadow: var(--pshadow), 0 30px 50px -30px rgba(43,27,20,.5); transform: rotate(-.4deg); border-radius: 10px; overflow: hidden; }
+    .split-left { padding-bottom: 1.5rem; }
+    .split-left { font-family: var(--body); color: var(--ink); }
+    .split-left .nf-title { font-family: var(--display); }
+    .pick { border-top-color: var(--line); }
+    .pick-options .mini { background: var(--paper); box-shadow: 0 0 0 1.5px var(--line) inset; }
+    .pick-options .mini[aria-pressed="true"] { background: var(--maple); color: var(--paper); box-shadow: var(--pshadow); transform: rotate(-1.5deg); }
+    .readout { border-radius: 0 10px 10px 0; }
+    /* flip cards */
+    .corners { position: relative; padding: 4rem 0 5rem; }
+    .corners::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--sand); z-index: -1; }
+    .corners h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0 0 .3rem; }
+    .corners .hint { margin: 0 0 2.2rem; color: var(--muted); font-size: 1.05rem; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+    .flip { position: relative; height: 15.5rem; perspective: 1000px; background: none; border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
+    .flip-inner { position: absolute; inset: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+    .flip.on .flip-inner { transform: rotateY(180deg); }
+    .face { position: absolute; inset: 0; padding: 1.4rem; background: var(--paper); border-radius: 6px; box-shadow: var(--pshadow); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .face.back { transform: rotateY(180deg); background: var(--gold-soft); }
+    .face.back::after { content: "↩ tap to flip back"; position: absolute; left: 1.3rem; bottom: 1rem; font-size: .8rem; color: var(--muted); }
+    .face h3 { font-family: var(--display); margin: 0 0 .4rem; font-size: 1.3rem; }
+    .face p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.5; }
+    .face img { width: 52px; position: absolute; top: -20px; right: 14px; transform: rotate(18deg); filter: drop-shadow(0 4px 4px rgba(43,27,20,.3)); }
+    .tap-me { position: absolute; left: 1.3rem; bottom: 1rem; background: var(--maple); color: var(--paper); padding: .3rem .8rem; border-radius: 999px; font-size: .85rem; box-shadow: var(--pshadow); animation: wiggle 2.4s ease-in-out infinite; }
+    .flip:nth-child(1) { transform: rotate(-1deg); } .flip:nth-child(2) { transform: rotate(.8deg) translateY(10px); } .flip:nth-child(3) { transform: rotate(-.5deg); } .flip:nth-child(4) { transform: rotate(1deg) translateY(6px); }
+    .flip .tape { left: 26px; margin: 0; width: 64px; height: 20px; transform: rotate(-6deg); z-index: 3; }
+    .cozy { position: relative; padding: 4rem 0; color: var(--gold-soft); }
+    .cozy::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--cocoa); z-index: -1; }
+    .cozy p { font-family: var(--display); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.35; max-width: 38rem; margin: 0; }
+    .cozy small { display: block; margin-top: .9rem; font-family: var(--body); font-size: .95rem; color: var(--gold); }
+    .about { padding-top: 4rem; }
+    .about-photo::before { display: none; }
+    .about-photo img { margin: 0; width: 100%; padding: 12px 12px 14px; background: var(--paper); box-shadow: var(--pshadow); transform: rotate(-2.5deg); border-radius: 4px; }
+    .site-footer { border: 0; color: var(--line); position: relative; }
+    .site-footer::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--cocoa); z-index: -1; }
+    @media (max-width: 1100px) { .cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 900px) {
+      .hero { padding: 5rem 0 5rem; }
+      .hero-copy { padding: 1.3rem; }
+      .hero-visual { margin-top: 3rem; }
+      .facts { right: 0; bottom: -1.25rem; }
+      .leaf { width: 36px; }
+    }
+    @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .flip:nth-child(n) { transform: rotate(-.5deg); } }
+    @media (prefers-reduced-motion: reduce) { .tap-badge, .tap-me, .leaf img, .check input:checked ~ .box { animation: none; } .flip-inner { transition: none; } }
+
     /* Print: recipe and nutrition only, black on white */
     @media print {
+      body::after, .leaves, .basket, .tear, .corners, .cozy, .tape, .tap-badge { display: none !important; }
+      .hero::before, .recipe::before, .nutrition::before, .builder::before { display: none; }
+      .hero-copy, .ingredients, .hero-photo, .plate, .nf, .tip, .split { transform: none; box-shadow: none; }
+      .hero-photo img { transform: none; }
       body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
       .leaves, .site-header, .actions, .hero-visual, .strip, .recipe-tools, .cook-status,
       .tap-note, .about, .site-footer, .plate, .badge, .pitch, .builder { display: none !important; }
@@ -560,6 +668,7 @@
 </head>
 <body id="top">
   <div class="leaves" id="leaves" aria-hidden="true"></div>
+  <div class="basket" aria-live="polite">🧺 leaves caught: <b id="caught">0</b></div>
 
   <div class="wrap">
     <header class="site-header">
@@ -582,7 +691,7 @@
             <li>9 g protein a slice</li>
           </ul>
           <p class="lead">Made with oat, almond and coconut flour, greek yogurt and eggs. Sweetened with maple syrup.</p>
-          <p class="pitch">Made for the 4 o'clock slump: after daycare pickup, or between back-to-back calls. One slice holds a hungry toddler or a tired parent until dinner.</p>
+          <p class="pitch">Made for the 4 o'clock slump: after daycare pickup, or between back-to-back calls. 1 slice holds a hungry toddler or a tired parent until dinner.</p>
           <p class="print-line">Bakes 55 to 65 minutes. Makes 1 loaf. 9 x 4.5 in loaf pan.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#recipe" data-umami-event="jump-to-recipe" data-umami-event-place="hero">Jump to recipe</a>
@@ -591,10 +700,10 @@
         </div>
 
         <div class="hero-visual">
-          <figure class="hero-photo">
-            <img src="assets/images/banana-loaf-3.jpg" width="1200" height="1600"
+          <figure class="hero-photo"><span class="tape" aria-hidden="true"></span>
+            <div class="zoom"><img src="assets/images/banana-loaf-3.jpg" width="1200" height="1600"
                  alt="Baked banana bread topped with mini chocolate chips in a loaf pan"
-                 fetchpriority="high" decoding="async">
+                 fetchpriority="high" decoding="async"></div>
           </figure>
           <dl class="facts">
             <div><dt>minutes in the oven</dt><dd>55–65</dd></div>
@@ -603,10 +712,11 @@
           </dl>
         </div>
       </section>
+      <svg class="tear" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true"><path fill="#FCFAF6" d="M0 30 C120 10 180 46 320 28 S560 8 700 30 880 46 1040 24 1300 10 1440 32 V48 H0Z"/></svg>
 
       <section class="strip" aria-label="More photos">
         <div class="strip-text">
-          <p class="lines">ripe bananas,<br>a few pantry staples,<br>one bowl for wet and one for dry.<br>mix, pour, bake. 🍌</p>
+          <p class="lines">3 ripe bananas,<br>a few pantry staples,<br>1 bowl for wet, 1 for dry.<br>mix, pour, bake. 🍌</p>
         </div>
         <div class="strip-photos">
           <figure>
@@ -633,11 +743,11 @@
         <div class="recipe-grid">
           <aside class="ingredients" aria-labelledby="ing-title">
             <h2 id="ing-title">Ingredients</h2>
-            <p class="tap-note">Tap an ingredient to cross it off.</p>
+            <p class="tap-note"><span class="tap-badge">👆 Tap an ingredient to cross it off</span></p>
 
             <h3>Wet</h3>
             <ul>
-              <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">2–3 large ripe bananas, mashed</span></label></li>
+              <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">3 large ripe bananas, mashed</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">⅓ cup pure maple syrup</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">¼ cup olive oil (EVOO or light olive oil)</span></label></li>
               <li><label class="check"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="label">2 large eggs</span></label></li>
@@ -699,21 +809,21 @@
           <span class="badge">Estimate</span>
         </div>
         <div class="nutrition-grid">
-          <div class="nf" role="group" aria-label="Nutrition facts for one slice">
+          <div class="nf" role="group" aria-label="Nutrition facts for 1 slice">
             <div class="nf-title">Nutrition Facts</div>
             <div class="nf-serving">Per 1 slice (1/10 of loaf)</div>
             <div class="nf-bar thick"></div>
-            <div class="nf-cal"><span>Calories</span><span>267</span></div>
+            <div class="nf-cal"><span>Calories</span><span>272</span></div>
             <div class="nf-bar mid"></div>
             <div class="nf-row first"><b>Fat</b> 15 g</div>
-            <div class="nf-row"><b>Carbohydrate</b> 28 g</div>
+            <div class="nf-row"><b>Carbohydrate</b> 29 g</div>
             <div class="nf-row sub">Fiber 4 g</div>
-            <div class="nf-row sub">Sugars 15 g</div>
+            <div class="nf-row sub">Sugars 16 g</div>
             <div class="nf-row"><b>Protein</b> 9 g</div>
             <div class="nf-bar thick" style="margin-top:2px"></div>
             <div class="nf-foot">Estimate. Brands and sizes change the numbers.</div>
           </div>
-          <p class="nutrition-note">Per slice, if you cut the loaf into 10. This is an estimate. It uses 2½ bananas, ⅓ cup chocolate chips, and a protein powder with 25 g protein and 120 calories per scoop. Your numbers will differ.</p>
+          <p class="nutrition-note">Per slice, if you cut the loaf into 10. This is an estimate. It uses 3 bananas, ⅓ cup chocolate chips, and a protein powder with 25 g protein and 120 calories per scoop. Your numbers will differ.</p>
         </div>
       </section>
 
@@ -722,7 +832,7 @@
           <h2 id="builder-title">Want more protein? 💪</h2>
           <span class="badge">What-if, not the recipe</span>
         </div>
-        <p class="builder-note">The recipe above stays exactly as written. This only shows what one slice would look like if you swapped or added. Pick, and the numbers follow.</p>
+        <p class="builder-note">The recipe above stays exactly as written. This only shows what 1 slice would look like if you swapped or added. Pick, and the numbers follow.</p>
 
         <div class="split">
           <div class="split-left">
@@ -759,10 +869,45 @@
 
           <dl class="readout" aria-live="polite">
             <div><dt>g protein a slice</dt><dd><span id="out-protein">9.0</span><span class="delta" id="delta-protein"></span></dd></div>
-            <div><dt>calories a slice</dt><dd><span id="out-kcal">267</span><span class="delta" id="delta-kcal"></span></dd></div>
+            <div><dt>calories a slice</dt><dd><span id="out-kcal">272</span><span class="delta" id="delta-kcal"></span></dd></div>
             <div><dt>g protein per 100 kcal</dt><dd><span id="out-density">3.4</span><span class="delta" id="delta-density"></span></dd></div>
           </dl>
         </div>
+      </section>
+
+      <section class="corners" aria-labelledby="corners-title">
+        <h2 id="corners-title">4 little cards</h2>
+        <p class="hint">Tap any card to flip it over.</p>
+        <div class="cards">
+          <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
+            <div class="flip-inner">
+              <div class="face"><img src="assets/images/paper-leaf-0.png" alt=""><h3>For the toddler</h3><p>No refined sugar, soft crumb, easy to hold. Skip the walnuts until they're age‑safe.</p><span class="tap-me">👆 Tap me</span></div>
+              <div class="face back"><h3>Toddler math</h3><p>1 slice ≈ 1 small banana + a spoon of yogurt + a little protein. A snack that counts as half a meal.</p></div>
+            </div>
+          </button>
+          <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
+            <div class="flip-inner">
+              <div class="face"><img src="assets/images/paper-leaf-1.png" alt=""><h3>For the parent</h3><p>About 9 g protein a slice. Breakfast you can eat 1‑handed while someone needs a sock.</p><span class="tap-me">👆 Tap me</span></div>
+              <div class="face back"><h3>Make it eggless</h3><p>Swap the 2 eggs for 2 chia eggs: 2 tbsp chia seeds + 6 tbsp water, rest 5 minutes till gel‑like. Bake 5 minutes longer; the crumb comes out a bit denser.</p></div>
+            </div>
+          </button>
+          <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
+            <div class="flip-inner">
+              <div class="face"><img src="assets/images/paper-leaf-2.png" alt=""><h3>Keeps for</h3><p>3 days on the counter wrapped, 1 week in the fridge, 2 months in the freezer.</p><span class="tap-me">👆 Tap me</span></div>
+              <div class="face back"><h3>Reheat</h3><p>20 seconds in the microwave, or 1 minute per side in a dry pan for crisp edges.</p></div>
+            </div>
+          </button>
+          <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
+            <div class="flip-inner">
+              <div class="face"><img src="assets/images/paper-leaf-3.png" alt=""><h3>Nerd corner 🤓</h3><p>Yes, the bread has telemetry.</p><span class="tap-me">👆 Tap me</span></div>
+              <div class="face back"><h3>1 very tracked loaf</h3><p>Every tap on this page is an event. 0 cookies. Curious? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener" data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="nerd-card">DM me on insta</a>.</p></div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="cozy" aria-label="A cozy note">
+        <div><p>Picture it: a warm slice in 1 hand, coffee in the other, and the toddler is finally busy with the pots cupboard.</p><small>— weekday mornings, if you're lucky</small></div>
       </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
@@ -776,8 +921,6 @@
           <p>I cook simple food that works for real life.</p>
           <a class="btn btn-primary" href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener"
              data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="about">Say hi on Instagram @mi_aditi</a>
-          <p class="nerd">Hi fellow nerdies 🤓, I'm running this site like a tiny experiment. Want to see the tracking numbers or swap ideas? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener"
-             data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="nerd-line">DM me on insta</a>.</p>
         </div>
       </section>
     </main>
@@ -795,19 +938,29 @@
 
       /* Falling leaves */
       var leafBtn = document.getElementById('leaf-toggle');
+      var caught = 0, caughtOut = document.getElementById('caught');
+      document.querySelectorAll('.flip').forEach(function (c) {
+        c.addEventListener('click', function (e) { if (e.target.closest('a')) return; var on = c.classList.toggle('on'); c.setAttribute('aria-expanded', String(on)); });
+      });
       var box = document.getElementById('leaves');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         if (leafBtn) leafBtn.hidden = true;
       } else if (box && leafBtn) {
-        var count = window.innerWidth < 700 ? 7 : 12;
+        var count = window.innerWidth < 700 ? 6 : 9;
         for (var i = 0; i < count; i++) {
           var el = document.createElement('div');
           el.className = 'leaf';
           el.style.left = Math.round(Math.random() * 95) + '%';
-          el.style.fontSize = (14 + Math.round(Math.random() * 10)) + 'px';
+          el.style.width = (28 + Math.round(Math.random() * 18)) + 'px';
           el.style.animationDuration = (11 + Math.round(Math.random() * 9)) + 's';
           el.style.animationDelay = '-' + Math.round(Math.random() * 18) + 's';
-          el.innerHTML = '<span style="animation-duration:' + (3 + Math.round(Math.random() * 3)) + 's">\uD83C\uDF41</span>';
+          el.innerHTML = '<img alt="" src="assets/images/paper-leaf-' + Math.floor(Math.random() * 5) + '.png" style="animation-duration:' + (3 + Math.round(Math.random() * 3)) + 's">';
+          el.addEventListener('click', function () {
+            if (el.classList.contains('caught')) return;
+            el.classList.add('caught');
+            caughtOut.textContent = ++caught;
+            setTimeout(function () { el.classList.remove('caught'); el.style.left = Math.round(Math.random() * 95) + '%'; el.style.animationDelay = '0s'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; }, 600);
+          });
           box.appendChild(el);
         }
         leafBtn.addEventListener('click', function () {
@@ -820,14 +973,14 @@
       /* Protein builder: a what-if readout. It never touches the recipe. */
       var builder = document.querySelector('.builder');
       if (builder) {
-        // Loaf totals without powder, derived from the Nutrition estimate (9 g / 267 kcal a slice with a 25 g / 120 kcal scoop).
-        var baseProtein = 65, baseKcal = 2550, slices = 10;
+        // Loaf totals without powder, derived from the Nutrition estimate (9 g / 272 kcal a slice with a 25 g / 120 kcal scoop).
+        var baseProtein = 65, baseKcal = 2600, slices = 10;
         var options = {
           powder: {
             none:  { p: 0,  k: 0,   note: '' },
             vegan: { p: 25, k: 120, note: 'As written on the page.' },
             whey:  { p: 24, k: 120, note: 'Whey bakes a little drier and chewier. Add 1 to 2 tbsp more milk or yogurt, and pull the loaf a few minutes early.' },
-            two:   { p: 50, k: 240, note: 'Two scoops make a denser, drier crumb. Add 3 to 4 tbsp more milk and expect a tighter loaf.' }
+            two:   { p: 50, k: 240, note: '2 scoops make a denser, drier crumb. Add 3 to 4 tbsp more milk and expect a tighter loaf.' }
           },
           chia: {
             'none':        { p: 0,   k: 0,   note: '' },
@@ -836,7 +989,7 @@
           },
           egg: {
             none: { p: 0,   k: 0,  note: '' },
-            one:  { p: 6.3, k: 72, note: 'A third egg gives more lift and a softer, slightly custardy crumb. It may need 5 more minutes in the oven.' }
+            one:  { p: 6.3, k: 72, note: 'A 3rd egg gives more lift and a softer, slightly custardy crumb. It may need 5 more minutes in the oven.' }
           }
         };
         var picks = { powder: 'vegan', chia: 'none', egg: 'none' };
