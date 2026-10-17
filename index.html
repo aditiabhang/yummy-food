@@ -599,8 +599,8 @@
         .face h3 { font-family: var(--display); margin: 0 0 .4rem; font-size: 1.3rem; }
     .face p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.5; }
     .face::before { content: ""; position: absolute; right: 0; bottom: 0; width: 30px; height: 30px; background: linear-gradient(225deg, var(--sand) 50%, rgba(43,27,20,.14) 50%); border-top-left-radius: 4px; }
-    .face::after { content: "tap to turn over"; position: absolute; left: 1.4rem; bottom: .9rem; font-size: .8rem; color: var(--maple); }
-    .face.back::after { content: "tap to turn back"; }
+    .face::after { content: "flip me"; position: absolute; left: 1.4rem; bottom: .9rem; font-size: .8rem; color: var(--maple); }
+    .face.back::after { content: "flip me back"; }
     .face.back::before { background: linear-gradient(225deg, var(--sand) 50%, rgba(43,27,20,.1) 50%); }
     .face img { width: 52px; position: absolute; top: -20px; right: 14px; transform: rotate(18deg); filter: drop-shadow(0 4px 4px rgba(43,27,20,.3)); }
     .flip:nth-child(2), .flip:nth-child(4) { transform: translateY(10px); }
