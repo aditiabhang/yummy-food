@@ -589,7 +589,7 @@
     .corners { position: relative; padding: 4rem 0 5rem; }
     .corners::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--sand); z-index: -1; }
     .corners h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0 0 .3rem; }
-    .corners .hint { margin: 0 0 2.2rem; color: var(--muted); font-size: 1.05rem; }
+    .corners h2 { margin-bottom: 1.8rem; }
     .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
     .flip { position: relative; height: 15.5rem; perspective: 1000px; background: none; border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
     .flip-inner { position: absolute; inset: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
@@ -598,6 +598,10 @@
     .face.back { transform: rotateY(180deg); background: var(--gold-soft); }
         .face h3 { font-family: var(--display); margin: 0 0 .4rem; font-size: 1.3rem; }
     .face p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.5; }
+    .face::before { content: ""; position: absolute; right: 0; bottom: 0; width: 30px; height: 30px; background: linear-gradient(225deg, var(--sand) 50%, rgba(43,27,20,.14) 50%); border-top-left-radius: 4px; }
+    .face::after { content: "tap to turn over"; position: absolute; left: 1.4rem; bottom: .9rem; font-size: .8rem; color: var(--maple); }
+    .face.back::after { content: "tap to turn back"; }
+    .face.back::before { background: linear-gradient(225deg, var(--sand) 50%, rgba(43,27,20,.1) 50%); }
     .face img { width: 52px; position: absolute; top: -20px; right: 14px; transform: rotate(18deg); filter: drop-shadow(0 4px 4px rgba(43,27,20,.3)); }
     .flip:nth-child(2), .flip:nth-child(4) { transform: translateY(10px); }
     .flip .tape { left: 26px; margin: 0; width: 64px; height: 20px; transform: rotate(-6deg); z-index: 3; }
@@ -875,7 +879,6 @@
 
       <section class="corners" aria-labelledby="corners-title">
         <h2 id="corners-title">Good to know</h2>
-        <p class="hint">Tap a card to turn it over.</p>
         <div class="cards">
           <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
             <div class="flip-inner">
