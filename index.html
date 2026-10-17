@@ -266,6 +266,16 @@
     .strip-photos img { width: 100%; object-fit: cover; border-radius: var(--radius); }
     .strip-photos figure:first-child img { aspect-ratio: 807 / 743; }
     .strip-photos figure:last-child img { aspect-ratio: 3 / 4; }
+    .comic-teaser {
+      display: block; position: relative; max-width: 19rem; margin-top: 2rem;
+      padding: 8px 8px 10px; background: var(--paper); color: var(--cocoa); text-decoration: none;
+      box-shadow: 0 1px 0 rgba(43,27,20,.08), 0 10px 24px -10px rgba(43,27,20,.35);
+      transform: rotate(-1.5deg); transition: transform .2s ease;
+    }
+    .comic-teaser:hover { transform: rotate(0deg) translateY(-2px); }
+    .comic-teaser .tape { position: absolute; top: -9px; left: 50%; width: 70px; height: 20px; margin-left: -35px; background: rgba(242,178,51,.6); transform: rotate(-4deg); }
+    .comic-teaser img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .comic-teaser-text { display: block; padding: .6rem .2rem 0; font-size: .95rem; font-weight: 600; }
 
     /* Recipe */
     .recipe { padding: 0 0 5.5rem; }
@@ -722,6 +732,12 @@
       <section class="strip" aria-label="More photos">
         <div class="strip-text">
           <p class="lines">3 ripe bananas and a few pantry staples.<br>Two bowls, one pan,<br>about an hour in the oven.</p>
+          <a class="comic-teaser" href="comic.html" data-umami-event="open-comic">
+            <span class="tape" aria-hidden="true"></span>
+            <img src="assets/images/comic/panel-3.jpg" width="1400" height="788"
+                 alt="Clay figures: a toddler with both arms up and his mother wagging a finger over a mixing bowl" loading="lazy" decoding="async">
+            <span class="comic-teaser-text">Read the Saturday in 6 panels →</span>
+          </a>
         </div>
         <div class="strip-photos">
           <figure>
