@@ -275,7 +275,7 @@
     .comic-teaser:hover { transform: rotate(0deg) translateY(-2px); }
     .comic-teaser .tape { position: absolute; top: -9px; left: 50%; width: 70px; height: 20px; margin-left: -35px; background: rgba(242,178,51,.6); transform: rotate(-4deg); }
     .comic-teaser img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-    .comic-teaser-text { display: block; padding: .6rem .2rem 0; font-size: .95rem; font-weight: 600; }
+    .comic-teaser-text { display: block; padding: .6rem .2rem 0; font-size: .95rem; font-weight: 600; text-wrap: balance; }
 
     /* Recipe */
     .recipe { padding: 0 0 5.5rem; }
@@ -511,7 +511,7 @@
       .readout { grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
       .readout dd { font-size: 2rem; }
       .about { display: block; padding-bottom: 3.5rem; }
-      .lines br { display: none; } /* narrow screens: let the lines flow as a sentence */
+      .about-text .lines br { display: none; } /* narrow screens: the About lines flow as a sentence; the strip keeps its three */
       .about-photo { max-width: 22rem; margin-bottom: 2rem; }
     }
 
@@ -626,11 +626,12 @@
     .site-footer::before { content: ""; position: absolute; inset: 0 -100vw; background: var(--cocoa); z-index: -1; }
     @media (max-width: 1100px) { .cards { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 900px) {
-      .hero { padding: 5rem 0 5rem; }
+      .hero { padding: 6.25rem 0 5rem; } /* room for the nav row and the leaf controls row above the card */
       .hero-copy { padding: 1.3rem; }
       .hero-visual { margin-top: 3rem; }
       .facts { right: 0; bottom: -1.25rem; }
       .leaf { width: 36px; }
+      .leaf-ctl { top: 3.6rem; right: .75rem; } /* second row: the header nav owns the first one */
     }
     @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .flip:nth-child(n) { transform: none; } }
     @media (prefers-reduced-motion: reduce) { .leaf img, .check input:checked ~ .box { animation: none; } .flip-inner { transition: none; } }
@@ -704,9 +705,8 @@
       <section class="hero" aria-labelledby="title">
         <div class="hero-copy">
           <h1 id="title">Banana Maple Chocolate Chip Protein Bread</h1>
-          <p class="subtitle">Oat, almond and coconut flour</p>
-          <p class="lead">Made with oat, almond and coconut flour, greek yogurt and eggs. Sweetened with maple syrup. Gluten-free, butter-free, no refined sugar, about 9 g protein a slice.</p>
-          <p class="pitch">Made for the 4 o'clock slump: after daycare pickup, or between back-to-back calls. A slice holds a hungry toddler or a tired parent until dinner.</p>
+          <p class="subtitle">For the 4 o'clock slump</p>
+          <p class="lead">Oat, almond and coconut flour, greek yogurt and eggs, sweetened with maple. Gluten-free, no butter, no refined sugar, 9 g protein a slice.</p>
           <p class="print-line">Bakes 55 to 65 minutes. Makes 1 loaf. 9 x 4.5 in loaf pan.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#recipe" data-umami-event="jump-to-recipe" data-umami-event-place="hero">Jump to recipe</a>
@@ -731,12 +731,12 @@
 
       <section class="strip" aria-label="More photos">
         <div class="strip-text">
-          <p class="lines">3 ripe bananas and a few pantry staples.<br>Two bowls, one pan,<br>about an hour in the oven.</p>
+          <p class="lines">3 ripe bananas and a few pantry staples.<br>2 bowls, 1 pan,<br>~ 1 hr in the oven.</p>
           <a class="comic-teaser" href="comic.html" data-umami-event="open-comic">
             <span class="tape" aria-hidden="true"></span>
             <img src="assets/images/comic/panel-3.jpg" width="1400" height="788"
                  alt="Clay figures: a toddler with both arms up and his mother wagging a finger over a mixing bowl" loading="lazy" decoding="async">
-            <span class="comic-teaser-text">Read the Saturday in 6 panels →</span>
+            <span class="comic-teaser-text">Curious how it went? Behind the scenes →</span>
           </a>
         </div>
         <div class="strip-photos">
@@ -916,8 +916,8 @@
           </button>
           <button class="flip" type="button" aria-expanded="false"><span class="tape" aria-hidden="true"></span>
             <div class="flip-inner">
-              <div class="face"><img src="assets/images/paper-leaf-3.png" alt=""><h3>Nerd corner</h3><p>This recipe has telemetry. It logs events, no cookies.</p></div>
-              <div class="face back"><h3>What gets counted</h3><p>Page views, clicks, and which protein swap people pick. Want the numbers? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener" data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="nerd-card">Ask me on Instagram</a>.</p></div>
+              <div class="face"><img src="assets/images/paper-leaf-3.png" alt=""><h3>Nerd corner</h3><p>Yes, the bread has analytics. Events only, no cookies, no profiles.</p></div>
+              <div class="face back"><h3>A tiny experiment</h3><p>Curious cat mode: on. Clicks, flips, swaps and prints, all counted, none of them named. No cookies either. Want the chart? <a href="https://www.instagram.com/mi_aditi/" target="_blank" rel="noopener" data-umami-event="outbound-link" data-umami-event-url="https://www.instagram.com/mi_aditi/" data-umami-event-place="nerd-card">DM me</a>.</p></div>
             </div>
           </button>
         </div>
@@ -973,12 +973,13 @@
           el.style.animationDelay = '-' + Math.round(Math.random() * 18) + 's';
           var src = 'assets/images/paper-leaf-' + Math.floor(Math.random() * 5) + '.png';
           el.innerHTML = '<span class="sway" style="animation-duration:' + (3 + Math.round(Math.random() * 3)) + 's"><img class="l" alt="" src="' + src + '"><img class="r" alt="" src="' + src + '"></span>';
-          el.addEventListener('click', function () {
-            if (el.classList.contains('caught')) return;
-            el.classList.add('caught');
+          el.addEventListener('click', function (e) {
+            var leaf = e.currentTarget; // not `el`: that var is shared by the loop and ends up as the last leaf
+            if (leaf.classList.contains('caught')) return;
+            leaf.classList.add('caught');
             caughtOut.textContent = ++caught;
-            setTimeout(function () { el.style.visibility = 'hidden'; }, 700);
-            setTimeout(function () { el.classList.remove('caught'); el.style.left = Math.round(Math.random() * 95) + '%'; el.style.animationDelay = '0s'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; el.style.visibility = ''; }, 2000 + Math.round(Math.random() * 2500));
+            setTimeout(function () { leaf.style.visibility = 'hidden'; }, 700);
+            setTimeout(function () { leaf.classList.remove('caught'); leaf.style.left = Math.round(Math.random() * 95) + '%'; leaf.style.animationDelay = '0s'; leaf.style.animation = 'none'; void leaf.offsetWidth; leaf.style.animation = ''; leaf.style.visibility = ''; }, 2000 + Math.round(Math.random() * 2500));
           });
           box.appendChild(el);
         }
