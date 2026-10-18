@@ -634,6 +634,11 @@
       .leaf-ctl { top: 3.6rem; right: .75rem; } /* second row: the header nav owns the first one */
     }
     @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .flip:nth-child(n) { transform: none; } }
+    @media (pointer: coarse) {
+      .leaves { z-index: 3; } /* on touch screens the cards cover most of the viewport, so leaves float above them (still under the header and controls) */
+      .leaf { touch-action: none; }
+      .leaf .sway::before { content: ""; position: absolute; inset: -10px; } /* hit halo: a near miss still pops the leaf */
+    }
     @media (prefers-reduced-motion: reduce) { .leaf img, .check input:checked ~ .box { animation: none; } .flip-inner { transition: none; } }
 
     /* Print: recipe and nutrition only, black on white */
@@ -963,21 +968,26 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.getElementById('leaf-ctl').hidden = true;
       } else if (box && leafBtn) {
-        var count = window.innerWidth < 700 ? 6 : 9;
+        /* Touch screens: bigger, slower leaves and one more of them, so there is usually one within thumb reach. */
+        var touch = window.matchMedia('(pointer: coarse)').matches;
+        var count = window.innerWidth < 700 ? (touch ? 7 : 6) : 9;
         for (var i = 0; i < count; i++) {
           var el = document.createElement('div');
           el.className = 'leaf';
           el.style.left = Math.round(Math.random() * 95) + '%';
-          el.style.width = (28 + Math.round(Math.random() * 18)) + 'px';
-          el.style.animationDuration = (11 + Math.round(Math.random() * 9)) + 's';
+          el.style.width = (touch ? 48 + Math.round(Math.random() * 16) : 28 + Math.round(Math.random() * 18)) + 'px';
+          el.style.animationDuration = (touch ? 18 + Math.round(Math.random() * 10) : 11 + Math.round(Math.random() * 9)) + 's';
           el.style.animationDelay = '-' + Math.round(Math.random() * 18) + 's';
           var src = 'assets/images/paper-leaf-' + Math.floor(Math.random() * 5) + '.png';
           el.innerHTML = '<span class="sway" style="animation-duration:' + (3 + Math.round(Math.random() * 3)) + 's"><img class="l" alt="" src="' + src + '"><img class="r" alt="" src="' + src + '"></span>';
-          el.addEventListener('click', function (e) {
+          /* pointerdown, not click: pops the moment a finger lands, even if the leaf has drifted on by the time it lifts */
+          el.addEventListener('pointerdown', function (e) {
             var leaf = e.currentTarget; // not `el`: that var is shared by the loop and ends up as the last leaf
             if (leaf.classList.contains('caught')) return;
+            e.preventDefault(); // no text selection or scroll start under the tap
             leaf.classList.add('caught');
             caughtOut.textContent = ++caught;
+            if (navigator.vibrate) navigator.vibrate(15);
             setTimeout(function () { leaf.style.visibility = 'hidden'; }, 700);
             setTimeout(function () { leaf.classList.remove('caught'); leaf.style.left = Math.round(Math.random() * 95) + '%'; leaf.style.animationDelay = '0s'; leaf.style.animation = 'none'; void leaf.offsetWidth; leaf.style.animation = ''; leaf.style.visibility = ''; }, 2000 + Math.round(Math.random() * 2500));
           });
