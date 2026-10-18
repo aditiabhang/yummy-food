@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Prepares a fresh orb for this repository.
+#
+# The site is plain HTML, CSS and JavaScript with no build step and no package manager, so there
+# are no dependencies to install. Everything an agent needs to preview and verify the site ships
+# with the orb base image: python3 (static file server), agent-browser with Chrome for Testing
+# (screenshots at phone and desktop widths) and ImageMagick/ffmpeg (asset checks). This script only
+# confirms those tools are present and repairs the one thing that can be missing: the Chrome build
+# that agent-browser drives. It is safe to run repeatedly and finishes in seconds on a warm orb.
+set -euo pipefail
+
+step() { printf '\n==> %s\n' "$*"; }
+started=$SECONDS
+
+step "Required command-line tools"
+missing=0
+for tool in python3 agent-browser rg magick ffmpeg; do
+	if command -v "$tool" >/dev/null 2>&1; then
+		printf '  ok   %s -> %s\n' "$tool" "$(command -v "$tool")"
+	else
+		printf '  MISSING %s\n' "$tool"
+		missing=1
+	fi
+done
+if [ "$missing" -ne 0 ]; then
+	echo "A required tool is missing from the orb base image; see https://ampcode.com/docs/orbs" >&2
+	exit 1
+fi
+
+step "Chrome for agent-browser"
+# agent-browser keeps its Chrome for Testing build under ~/.agent-browser/browsers. The base image
+# ships one, but check and install it so a stale image still produces a working snapshot.
+if compgen -G "$HOME/.agent-browser/browsers/chrome-*/chrome" >/dev/null; then
+	printf '  ok   %s\n' "$(compgen -G "$HOME/.agent-browser/browsers/chrome-*/chrome" | head -n 1)"
+else
+	echo "  installing Chrome for Testing"
+	agent-browser install
+fi
+
+step "Static site sanity check"
+# Confirm the repository root serves as a static site: every page must exist and the shared
+# stylesheet, script and self-hosted fonts must be where the pages expect them.
+for path in index.html comic.html css/style.css js/site.js assets/fonts/Literata-Variable.woff2; do
+	[ -f "$path" ] || { echo "  missing $path" >&2; exit 1; }
+done
+echo "  ok   pages, css/, js/ and assets/fonts/ present"
+
+printf '\nSetup finished in %ds. Serve the site with: amp orb services ensure\n' "$((SECONDS - started))"

@@ -1,0 +1,10 @@
+services:
+  site:
+    command: python3 -m http.server "$PORT" --bind 127.0.0.1
+    portal:
+      url: /
+      title: yummy-food
+      description: Static preview of the repository root, as GitHub Pages serves it.
+    portals:
+      - url: /comic.html
+        title: How it went (comic)
